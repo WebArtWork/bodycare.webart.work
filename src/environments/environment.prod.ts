@@ -4,7 +4,7 @@ export const environment = {
 	appId: 'appId',
 	url: 'https://it.webart.work',
 	contact: {
-		slug: 'neryxomka.com',
+		slug: 'bodycare.webart.work',
 	},
 	sign: {
 		logo: '',
@@ -12,8 +12,8 @@ export const environment = {
 		password: '',
 	},
 	image: {
-		default: 'https://neryxomka.com/logo.png',
-		logo: 'https://neryxomka.com/logo.png',
+		default: 'https://bodycare.webart.work/logo.png',
+		logo: 'https://bodycare.webart.work/logo.png',
 	},
 	defaultLanguageCode: 'en',
 	languages: [

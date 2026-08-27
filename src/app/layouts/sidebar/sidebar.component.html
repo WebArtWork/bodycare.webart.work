@@ -122,8 +122,8 @@
 
 	<app-nav-icon
 		[class.sidebar--minimized-icon]="!showNames()"
-		[name]="showNames() ? translateService.translate('Для агентів')() : ''"
-		[ariaLabel]="translateService.translate('Для агентів')()"
+		[name]="showNames() ? translateService.translate('Для спеціалістів')() : ''"
+		[ariaLabel]="translateService.translate('Для спеціалістів')()"
 		(click)="closeIfOverlay()"
 		routerLink="/for-specialists"
 		icon="id-card"
@@ -131,17 +131,8 @@
 
 	<app-nav-icon
 		[class.sidebar--minimized-icon]="!showNames()"
-		[name]="showNames() ? translateService.translate('Для забудовників')() : ''"
-		[ariaLabel]="translateService.translate('Для забудовників')()"
-		(click)="closeIfOverlay()"
-		routerLink="/for-developers"
-		icon="building"
-	/>
-
-	<app-nav-icon
-		[class.sidebar--minimized-icon]="!showNames()"
-		[name]="showNames() ? translateService.translate('Для агентств')() : ''"
-		[ariaLabel]="translateService.translate('Для агентств')()"
+		[name]="showNames() ? translateService.translate('Для закладів')() : ''"
+		[ariaLabel]="translateService.translate('Для закладів')()"
 		(click)="closeIfOverlay()"
 		routerLink="/for-venues"
 		icon="briefcase"

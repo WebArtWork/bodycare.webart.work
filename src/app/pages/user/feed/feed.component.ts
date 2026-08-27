@@ -11,7 +11,7 @@ import { ServiceRelationType } from '../../../components/service/service-short/s
 type FeedAction = 'favourite' | 'ignore';
 
 /** Fallback image shown when a service has no photos or its photo fails to load. */
-const DEFAULT_PHOTO = '/property-default.svg';
+const DEFAULT_PHOTO = '/service-default.svg';
 
 @Component({
 	imports: [ButtonModule, SpecialistIconComponent, VenueIconComponent],

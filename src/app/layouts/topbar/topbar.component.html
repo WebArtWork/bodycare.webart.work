@@ -32,32 +32,10 @@
 			class="inline-flex items-center max-md:hidden"
 		>
 			<app-nav-icon
-				routerLink="/properties"
-				[name]="viewport() === 'mobile' ? '' : translateService.translate('Properties')()"
-				[ariaLabel]="translateService.translate('Properties')()"
-				icon="building"
-			/>
-		</li>
-
-		<li
-			class="inline-flex items-center max-md:hidden"
-		>
-			<app-nav-icon
 				routerLink="/venues"
 				[name]="viewport() === 'mobile' ? '' : translateService.translate('Venues')()"
 				[ariaLabel]="translateService.translate('Venues')()"
 				icon="briefcase"
-			/>
-		</li>
-
-		<li
-			class="inline-flex items-center max-md:hidden"
-		>
-			<app-nav-icon
-				routerLink="/developers"
-				[name]="viewport() === 'mobile' ? '' : translateService.translate('Developers')()"
-				[ariaLabel]="translateService.translate('Developers')()"
-				icon="users"
 			/>
 		</li>
 

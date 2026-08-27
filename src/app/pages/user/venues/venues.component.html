@@ -1,7 +1,7 @@
 <section class="venues">
 	<header class="venues__header">
-		<h2 class="venues__title">Агентства</h2>
-		<span class="venues__hint">Перегляньте всі агентства нерухомості Neryxomka</span>
+		<h2 class="venues__title">Заклади</h2>
+		<span class="venues__hint">Перегляньте всі заклади краси та фітнесу Neryxomka</span>
 	</header>
 
 	<p-card class="venues__filters">
@@ -20,7 +20,7 @@
 	</p-card>
 
 	<div class="venues__results">
-		<span class="venues__count">Знайдено агентств: {{ results().length }}</span>
+		<span class="venues__count">Знайдено закладів: {{ results().length }}</span>
 
 		<div class="venues__grid">
 			@for (item of results(); track item._id) {
@@ -28,7 +28,7 @@
 				<app-venue-short [entity]="item" />
 			</div>
 			} @empty {
-			<p class="venues__empty">За заданим запитом агентств не знайдено.</p>
+			<p class="venues__empty">За заданим запитом закладів не знайдено.</p>
 			}
 		</div>
 	</div>
