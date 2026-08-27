@@ -50,9 +50,13 @@ export class UserViewComponent {
 		this.entity.recordIds.map((id) => _recordById.get(id)).filter((r): r is ClientRecord => !!r),
 	);
 
-	readonly relatedServices = computed<Service[]>(() =>
-		[] as Service[],
-	);
+	readonly relatedServices = computed<Service[]>(() => {
+		const specialist = this.specialist();
+		if (!specialist) return [];
+		return specialist.serviceIds
+			.map((id) => _serviceById.get(id))
+			.filter((s): s is Service => !!s);
+	});
 
 	viewSpecialist(): void {
 		const specialist = this.specialist();
