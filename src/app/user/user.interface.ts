@@ -1,4 +1,4 @@
-export type UserRole = 'owner' | 'tenant' | 'agent' | 'agency-rep' | 'developer-rep' | 'buyer';
+export type UserRole = 'client' | 'specialist' | 'venue-rep';
 
 export interface UserContact {
 	email: string;
@@ -13,14 +13,12 @@ export interface User {
 	country: string;
 	city: string;
 	interests: string[];
-	preferredPropertyTypes: string[];
+	preferredSpecialistIds: string[];
 	roles: UserRole[];
 	experienceYears: number;
 	contact: UserContact;
-	ownedPropertyIds: string[];
-	listingIds: string[];
+	recordIds: string[];
 	requestIds: string[];
-	agentId: string | null;
-	agencyId: string | null;
-	developerId: string | null;
+	specialistId: string | null;
+	venueId: string | null;
 }

@@ -1,26 +1,21 @@
 import { RecordStatus, RecordType, RecordVisibility } from './record.interface';
 
 /**
- * Ukrainian labels for property-record enums, shared between the record
+ * Ukrainian labels for client-record enums, shared between the record
  * form and the record detail view so both stay in sync.
  */
 export const RECORD_TYPE_OPTIONS: { value: RecordType; label: string }[] = [
-	{ value: 'infrastructure', label: 'Інфраструктура' },
-	{ value: 'utility', label: 'Комунальні послуги' },
-	{ value: 'maintenance', label: 'Обслуговування' },
-	{ value: 'repair', label: 'Ремонт' },
-	{ value: 'renovation', label: 'Реконструкція' },
-	{ value: 'expense', label: 'Витрата' },
-	{ value: 'inspection', label: 'Огляд' },
-	{ value: 'incident', label: 'Інцидент' },
-	{ value: 'damage', label: 'Пошкодження' },
-	{ value: 'improvement', label: 'Покращення' },
-	{ value: 'equipment-installation', label: 'Встановлення обладнання' },
-	{ value: 'meter-replacement', label: 'Заміна лічильника' },
-	{ value: 'document', label: 'Документ' },
-	{ value: 'ownership-change', label: 'Зміна власника' },
-	{ value: 'tenant-change', label: 'Зміна орендаря' },
-	{ value: 'valuation', label: 'Оцінка' },
+	{ value: 'haircut', label: 'Стрижка' },
+	{ value: 'coloring', label: 'Фарбування' },
+	{ value: 'manicure', label: 'Манікюр' },
+	{ value: 'pedicure', label: 'Педикюр' },
+	{ value: 'workout-session', label: 'Тренування' },
+	{ value: 'personal-training', label: 'Персональний тренінг' },
+	{ value: 'massage', label: 'Масаж' },
+	{ value: 'skin-treatment', label: 'Догляд за шкірою' },
+	{ value: 'facial', label: 'Косметологічна процедура' },
+	{ value: 'waxing', label: 'Депіляція' },
+	{ value: 'measurement-checkin', label: 'Замір показників' },
 	{ value: 'note', label: 'Примітка' },
 ];
 
@@ -36,8 +31,8 @@ export const RECORD_VISIBILITY_OPTIONS: { value: RecordVisibility; label: string
 	{ value: 'public-summary-private-details', label: 'Публічний огляд, приватні деталі' },
 	{ value: 'private', label: 'Приватний' },
 	{ value: 'shared-with-selected-users', label: 'Доступ вибраним користувачам' },
-	{ value: 'shared-with-owners-tenants', label: 'Доступ власникам і орендарям' },
-	{ value: 'shared-with-agent-agency-contractor-manager', label: 'Доступ агенту, агенції, підряднику, керуючому' },
+	{ value: 'shared-with-client', label: 'Доступ клієнту' },
+	{ value: 'shared-with-specialist-venue', label: 'Доступ спеціалісту й закладу' },
 ];
 
 export const RECORD_TYPE_LABELS: Record<RecordType, string> = Object.fromEntries(

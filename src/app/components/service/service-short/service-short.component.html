@@ -1,0 +1,31 @@
+<article class="short">
+	@if (entity.photos.length) {
+		<img class="short__thumb" [src]="entity.photos[0]" [alt]="entity.title" loading="lazy" />
+	}
+
+	<div class="short__body">
+		<h3 class="short__title">{{ entity.title }}</h3>
+		<p class="short__address">{{ entity.durationMinutes }} хв</p>
+
+		<div class="short__meta">
+			<span>{{ entity.price }} {{ entity.currency }}</span>
+			<span>{{ entity.category }}</span>
+			<span>{{ entity.status }}</span>
+		</div>
+
+		@if (specialist || venue) {
+			<div class="short__relations">
+				@if (specialist) {
+					<button type="button" class="short__relation" (click)="onRelationClick($event, 'specialist', specialist._id)">
+						<app-specialist-icon [entity]="specialist" />
+					</button>
+				}
+				@if (venue) {
+					<button type="button" class="short__relation" (click)="onRelationClick($event, 'venue', venue._id)">
+						<app-venue-icon [entity]="venue" />
+					</button>
+				}
+			</div>
+		}
+	</div>
+</article>

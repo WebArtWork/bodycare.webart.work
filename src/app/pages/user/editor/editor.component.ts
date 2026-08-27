@@ -4,22 +4,13 @@ import { MessageService } from '@wawjs/ngx-prime/api';
 import { ButtonModule } from '@wawjs/ngx-prime/button';
 import { CardModule } from '@wawjs/ngx-prime/card';
 import { SelectButtonModule } from '@wawjs/ngx-prime/selectbutton';
-import { AgencyFormComponent } from '../../../components/agency/agency-form/agency-form.component';
-import { AgentFormComponent } from '../../../components/agent/agent-form/agent-form.component';
-import { ComplexFormComponent } from '../../../components/complex/complex-form/complex-form.component';
-import { DeveloperFormComponent } from '../../../components/developer/developer-form/developer-form.component';
-import { ListingFormComponent } from '../../../components/listing/listing-form/listing-form.component';
-import { PropertyFormComponent } from '../../../components/property/property-form/property-form.component';
+import { VenueFormComponent } from '../../../components/venue/venue-form/venue-form.component';
+import { SpecialistFormComponent } from '../../../components/specialist/specialist-form/specialist-form.component';
+import { ServiceFormComponent } from '../../../components/service/service-form/service-form.component';
 import { RecordFormComponent } from '../../../components/record/record-form/record-form.component';
+import { RequestFormComponent } from '../../../components/request/request-form/request-form.component';
 
-type EntityType =
-	| 'property'
-	| 'listing'
-	| 'record'
-	| 'complex'
-	| 'developer'
-	| 'agency'
-	| 'agent';
+type EntityType = 'service' | 'record' | 'venue' | 'specialist' | 'request';
 
 interface EntityOption {
 	label: string;
@@ -32,13 +23,11 @@ interface EntityOption {
 		ButtonModule,
 		CardModule,
 		SelectButtonModule,
-		PropertyFormComponent,
-		ListingFormComponent,
+		ServiceFormComponent,
 		RecordFormComponent,
-		ComplexFormComponent,
-		DeveloperFormComponent,
-		AgencyFormComponent,
-		AgentFormComponent,
+		VenueFormComponent,
+		SpecialistFormComponent,
+		RequestFormComponent,
 	],
 	templateUrl: './editor.component.html',
 	styleUrl: './editor.component.scss',
@@ -47,41 +36,33 @@ export class EditorComponent {
 	private readonly _messageService = inject(MessageService);
 
 	readonly options: EntityOption[] = [
-		{ label: 'Об’єкт', value: 'property' },
-		{ label: 'Оголошення', value: 'listing' },
+		{ label: 'Послуга', value: 'service' },
 		{ label: 'Запис історії', value: 'record' },
-		{ label: 'Комплекс', value: 'complex' },
-		{ label: 'Забудовник', value: 'developer' },
-		{ label: 'Агентство', value: 'agency' },
-		{ label: 'Агент', value: 'agent' },
+		{ label: 'Заклад', value: 'venue' },
+		{ label: 'Спеціаліст', value: 'specialist' },
+		{ label: 'Запит', value: 'request' },
 	];
 
-	readonly selectedType = signal<EntityType>('property');
+	readonly selectedType = signal<EntityType>('service');
 
-	private readonly _propertyForm = viewChild(PropertyFormComponent);
-	private readonly _listingForm = viewChild(ListingFormComponent);
+	private readonly _serviceForm = viewChild(ServiceFormComponent);
 	private readonly _recordForm = viewChild(RecordFormComponent);
-	private readonly _complexForm = viewChild(ComplexFormComponent);
-	private readonly _developerForm = viewChild(DeveloperFormComponent);
-	private readonly _agencyForm = viewChild(AgencyFormComponent);
-	private readonly _agentForm = viewChild(AgentFormComponent);
+	private readonly _venueForm = viewChild(VenueFormComponent);
+	private readonly _specialistForm = viewChild(SpecialistFormComponent);
+	private readonly _requestForm = viewChild(RequestFormComponent);
 
 	private readonly _activeForm = computed(() => {
 		switch (this.selectedType()) {
-			case 'property':
-				return this._propertyForm()?.form;
-			case 'listing':
-				return this._listingForm()?.form;
+			case 'service':
+				return this._serviceForm()?.form;
 			case 'record':
 				return this._recordForm()?.form;
-			case 'complex':
-				return this._complexForm()?.form;
-			case 'developer':
-				return this._developerForm()?.form;
-			case 'agency':
-				return this._agencyForm()?.form;
-			case 'agent':
-				return this._agentForm()?.form;
+			case 'venue':
+				return this._venueForm()?.form;
+			case 'specialist':
+				return this._specialistForm()?.form;
+			case 'request':
+				return this._requestForm()?.form;
 			default:
 				return undefined;
 		}

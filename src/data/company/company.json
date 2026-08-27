@@ -1,9 +1,9 @@
 {
 	"_id": "",
-	"name": "Neryxomka",
-	"title": "Neryxomka",
-	"description": "Цифровий паспорт нерухомості: об'єкти, оголошення та повна історія в одному місці",
-	"image": "/logo.png?v=20260827-property-mark",
-	"favicon": "/favicon.png?v=20260827",
-	"siteUrl": "https://neryxomka.com"
+	"name": "BodyCare",
+	"title": "BodyCare",
+	"description": "Цифровий паспорт клієнта: результати процедур, тренувань і послуг в одному місці",
+	"image": "/logo.png?v=20260828-bodycare",
+	"favicon": "/favicon.png?v=20260828-bodycare",
+	"siteUrl": "https://bodycare.webart.work"
 }

@@ -1,6 +1,6 @@
 <form class="form" [formGroup]="form">
 		<div class="form__field">
-			<label class="form__label" for="transactionType" translate>Тип угоди</label>
+			<label class="form__label" for="transactionType" translate>Тип запиту</label>
 			<p-select id="transactionType" formControlName="transactionType" [options]="transactionTypeOptions" optionLabel="label" optionValue="value" appendTo="body" />
 
 		</div>
@@ -53,28 +53,28 @@
 			}
 		</div>
 		<div class="form__field">
-			<label class="form__label" for="preferredSizeSqm" translate>Бажана площа (м²)</label>
-			<p-inputnumber id="preferredSizeSqm" formControlName="preferredSizeSqm" [min]="0" [invalid]="form.get('preferredSizeSqm')?.invalid && form.get('preferredSizeSqm')?.touched" />
+			<label class="form__label" for="preferredDurationMinutes" translate>Бажана тривалість (хв)</label>
+			<p-inputnumber id="preferredDurationMinutes" formControlName="preferredDurationMinutes" [min]="0" [invalid]="form.get('preferredDurationMinutes')?.invalid && form.get('preferredDurationMinutes')?.touched" />
 
 		</div>
 		<div class="form__field">
-			<label class="form__label" for="roomRequirements" translate>Вимоги до кімнат</label>
-			<p-inputnumber id="roomRequirements" formControlName="roomRequirements" [min]="0" [invalid]="form.get('roomRequirements')?.invalid && form.get('roomRequirements')?.touched" />
+			<label class="form__label" for="sessionsRequirements" translate>Кількість сеансів</label>
+			<p-inputnumber id="sessionsRequirements" formControlName="sessionsRequirements" [min]="0" [invalid]="form.get('sessionsRequirements')?.invalid && form.get('sessionsRequirements')?.touched" />
 
 		</div>
 		<div class="form__field">
-			<label class="form__label" for="conditionRequirements" translate>Вимоги до стану</label>
-			<input id="conditionRequirements" pInputText class="form__control" type="text" [formControlName]="'conditionRequirements'" [class._invalid]="form.get('conditionRequirements')?.invalid && form.get('conditionRequirements')?.touched" />
+			<label class="form__label" for="experienceRequirements" translate>Вимоги до досвіду спеціаліста</label>
+			<input id="experienceRequirements" pInputText class="form__control" type="text" [formControlName]="'experienceRequirements'" [class._invalid]="form.get('experienceRequirements')?.invalid && form.get('experienceRequirements')?.touched" />
 
 		</div>
 		<div class="form__field">
-			<label class="form__label" for="constructionPreferences" translate>Побажання щодо будівництва</label>
-			<input id="constructionPreferences" pInputText class="form__control" type="text" [formControlName]="'constructionPreferences'" [class._invalid]="form.get('constructionPreferences')?.invalid && form.get('constructionPreferences')?.touched" />
+			<label class="form__label" for="specialtyPreferences" translate>Побажання щодо спеціалізації</label>
+			<input id="specialtyPreferences" pInputText class="form__control" type="text" [formControlName]="'specialtyPreferences'" [class._invalid]="form.get('specialtyPreferences')?.invalid && form.get('specialtyPreferences')?.touched" />
 
 		</div>
 		<div class="form__field">
-			<label class="form__label" for="preferredMoveDate" translate>Бажана дата переїзду</label>
-			<input id="preferredMoveDate" pInputText class="form__control" type="date" [formControlName]="'preferredMoveDate'" [class._invalid]="form.get('preferredMoveDate')?.invalid && form.get('preferredMoveDate')?.touched" />
+			<label class="form__label" for="preferredDate" translate>Бажана дата</label>
+			<input id="preferredDate" pInputText class="form__control" type="date" [formControlName]="'preferredDate'" [class._invalid]="form.get('preferredDate')?.invalid && form.get('preferredDate')?.touched" />
 
 		</div>
 		<div class="form__field">

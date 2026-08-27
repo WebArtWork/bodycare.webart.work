@@ -1,0 +1,66 @@
+<article class="card">
+	@if (entity.photo) {
+		<img class="card__photo" style="width:96px;height:96px;border-radius:50%" [src]="entity.photo" alt="" />
+	}
+
+	<h2 class="card__title">{{ entity.displayName }}</h2>
+
+	<div class="card__meta">
+		<span class="card__badge">★ {{ entity.averageRating }} ({{ entity.reviewCount }})</span>
+		<span class="card__badge">{{ entity.yearsExperience }} років досвіду</span>
+	</div>
+
+	<p>{{ entity.bio }}</p>
+
+		<div class="card__row"><dt>Розташування</dt><dd>{{ entity.city }}, {{ entity.country }}</dd></div>
+		<div class="card__row"><dt>Телефон</dt><dd>{{ entity.contactPhone }}</dd></div>
+		<div class="card__row"><dt>Ел. пошта</dt><dd>{{ entity.contactEmail }}</dd></div>
+		@if (venue(); as v) {
+			<div class="card__row">
+				<dt>Заклад</dt>
+				<dd>
+					<button type="button" class="card__relation" (click)="viewVenue()">
+						<app-venue-icon [entity]="v" />
+					</button>
+				</dd>
+			</div>
+		}
+
+	@if (entity.specialties.length) {
+		<h3 class="card__section-title">Спеціалізації</h3>
+		<div class="card__meta">
+			@for (s of entity.specialties; track s) {
+				<span class="card__badge">{{ s }}</span>
+			}
+		</div>
+	}
+
+	@if (entity.certifications.length) {
+		<h3 class="card__section-title">Сертифікати</h3>
+		<div class="card__meta">
+			@for (c of entity.certifications; track c) {
+				<span class="card__badge">{{ c }}</span>
+			}
+		</div>
+	}
+
+	@if (entity.serviceAreas.length) {
+		<h3 class="card__section-title">Райони обслуговування</h3>
+		<div class="card__meta">
+			@for (a of entity.serviceAreas; track a) {
+				<span class="card__badge">{{ a }}</span>
+			}
+		</div>
+	}
+
+	@if (relatedServices().length) {
+		<h3 class="card__section-title">Послуги</h3>
+		<div class="card__list">
+			@for (service of relatedServices(); track service._id) {
+				<button type="button" class="card__list-item" (click)="viewService(service)">
+					<app-service-short [entity]="service" />
+				</button>
+			}
+		</div>
+	}
+</article>

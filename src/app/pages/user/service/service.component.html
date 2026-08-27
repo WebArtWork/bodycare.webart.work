@@ -1,0 +1,15 @@
+<section class="service">
+
+	@if (entity(); as item) {
+	@let rel = relations();
+	<app-service-view
+		[entity]="item"
+		[venue]="rel?.venue"
+		[specialist]="rel?.specialist"
+	/>
+	} @else {
+	<p-card class="service__not-found">
+		<p>Послугу не знайдено.</p>
+	</p-card>
+	}
+</section>

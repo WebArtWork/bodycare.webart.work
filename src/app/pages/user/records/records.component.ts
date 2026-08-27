@@ -4,15 +4,18 @@ import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs';
 import { CardModule } from '@wawjs/ngx-prime/card';
 import { RecordViewComponent } from '../../../components/record/record-view/record-view.component';
-import { PropertyRecord } from '../../../record/record.interface';
+import { ClientRecord } from '../../../record/record.interface';
 import { records } from '../../../record/record.data';
-import { Property } from '../../../property/property.interface';
-import { properties } from '../../../property/property.data';
 import { User } from '../../../user/user.interface';
 import { users } from '../../../user/user.data';
+import { Specialist } from '../../../specialist/specialist.interface';
+import { specialists } from '../../../specialist/specialist.data';
+import { Venue } from '../../../venue/venue.interface';
+import { venues } from '../../../venue/venue.data';
 
-const _propertyById = new Map<string, Property>(properties.map((p) => [p._id, p]));
 const _userById = new Map<string, User>(users.map((u) => [u._id, u]));
+const _specialistById = new Map<string, Specialist>(specialists.map((s) => [s._id, s]));
+const _venueById = new Map<string, Venue>(venues.map((v) => [v._id, v]));
 
 @Component({
 	imports: [RecordViewComponent, CardModule],
@@ -27,13 +30,23 @@ export class RecordsComponent {
 		{ initialValue: null },
 	);
 
-	readonly entity = computed<PropertyRecord | undefined>(() =>
+	readonly entity = computed<ClientRecord | undefined>(() =>
 		records.find((item) => item._id === this._id()),
 	);
 
-	readonly property = computed<Property | null>(() => {
+	readonly client = computed<User | null>(() => {
 		const record = this.entity();
-		return record ? (_propertyById.get(record.propertyId) ?? null) : null;
+		return record ? (_userById.get(record.clientId) ?? null) : null;
+	});
+
+	readonly specialist = computed<Specialist | null>(() => {
+		const record = this.entity();
+		return record?.specialistId ? (_specialistById.get(record.specialistId) ?? null) : null;
+	});
+
+	readonly venue = computed<Venue | null>(() => {
+		const record = this.entity();
+		return record?.venueId ? (_venueById.get(record.venueId) ?? null) : null;
 	});
 
 	readonly author = computed<User | null>(() => {
@@ -48,5 +61,4 @@ export class RecordsComponent {
 			.map((id) => _userById.get(id))
 			.filter((u): u is User => !!u);
 	});
-
 }

@@ -5,58 +5,19 @@ import { ButtonModule } from '@wawjs/ngx-prime/button';
 import { InputTextModule } from '@wawjs/ngx-prime/inputtext';
 import { MultiSelectModule } from '@wawjs/ngx-prime/multiselect';
 import { SelectModule } from '@wawjs/ngx-prime/select';
-import { ListingRelationType, ListingShortComponent } from '../../../components/listing/listing-short/listing-short.component';
-import { Listing, ListingStatus, ListingType } from '../../../listing/listing.interface';
-import { listings } from '../../../listing/listing.data';
-import { ListingRelations, propertyForListing, relationsForListing } from '../../../listing/listing-relations';
-import { PropertyType } from '../../../property/property.interface';
+import { ServiceRelationType, ServiceShortComponent } from '../../../components/service/service-short/service-short.component';
+import { Service, ServiceCategory, ServiceStatus } from '../../../service/service.interface';
+import { services } from '../../../service/service.data';
+import { ServiceRelations, SERVICE_CATEGORY_LABELS, SERVICE_STATUS_LABELS, relationsForService } from '../../../service/service-relations';
 
 interface SelectOption<T> {
 	label: string;
 	value: T;
 }
 
-const PROPERTY_TYPE_LABELS: Record<PropertyType, string> = {
-	apartment: 'Квартира',
-	house: 'Будинок',
-	room: 'Кімната',
-	land: 'Земельна ділянка',
-	office: 'Офіс',
-	'retail-space': 'Торгове приміщення',
-	warehouse: 'Склад',
-	garage: 'Гараж',
-	'parking-space': 'Паркомісце',
-	'commercial-building': 'Комерційна будівля',
-	'industrial-property': 'Промислова нерухомість',
-	'agricultural-property': 'Сільськогосподарська нерухомість',
-	'unfinished-construction': 'Незавершене будівництво',
-};
-
-const LISTING_TYPE_LABELS: Record<ListingType, string> = {
-	sale: 'Продаж',
-	'long-term-rent': 'Довгострокова оренда',
-	'short-term-rent': 'Короткострокова оренда',
-	'commercial-lease': 'Комерційна оренда',
-	'land-sale': 'Продаж землі',
-	other: 'Інше',
-};
-
-const LISTING_STATUS_LABELS: Record<ListingStatus, string> = {
-	draft: 'Чернетка',
-	'pending-review': 'На розгляді',
-	active: 'Активне',
-	reserved: 'Заброньоване',
-	rented: 'Здано в оренду',
-	sold: 'Продано',
-	expired: 'Термін минув',
-	paused: 'Призупинено',
-	rejected: 'Відхилено',
-	archived: 'Архівоване',
-};
-
 @Component({
 	imports: [
-		ListingShortComponent,
+		ServiceShortComponent,
 		FormsModule,
 		RouterLink,
 		ButtonModule,
@@ -70,53 +31,33 @@ const LISTING_STATUS_LABELS: Record<ListingStatus, string> = {
 export class ExploreComponent {
 	private readonly _router = inject(Router);
 
-	readonly propertyTypeOptions: SelectOption<PropertyType>[] = Object.entries(
-		PROPERTY_TYPE_LABELS,
-	).map(([value, label]) => ({ value: value as PropertyType, label }));
+	readonly categoryOptions: SelectOption<ServiceCategory>[] = Object.entries(
+		SERVICE_CATEGORY_LABELS,
+	).map(([value, label]) => ({ value: value as ServiceCategory, label }));
 
-	readonly listingTypeOptions: SelectOption<ListingType>[] = Object.entries(
-		LISTING_TYPE_LABELS,
-	).map(([value, label]) => ({ value: value as ListingType, label }));
-
-	readonly listingStatusOptions: SelectOption<ListingStatus>[] = Object.entries(
-		LISTING_STATUS_LABELS,
-	).map(([value, label]) => ({ value: value as ListingStatus, label }));
+	readonly serviceStatusOptions: SelectOption<ServiceStatus>[] = Object.entries(
+		SERVICE_STATUS_LABELS,
+	).map(([value, label]) => ({ value: value as ServiceStatus, label }));
 
 	readonly searchTerm = signal('');
-	readonly selectedPropertyTypes = signal<PropertyType[]>([]);
-	readonly selectedListingType = signal<ListingType | null>(null);
-	readonly selectedStatus = signal<ListingStatus | null>(null);
+	readonly selectedCategories = signal<ServiceCategory[]>([]);
+	readonly selectedStatus = signal<ServiceStatus | null>(null);
 
-	readonly results = computed<{ listing: Listing; relations: ListingRelations }[]>(() => {
+	readonly results = computed<{ service: Service; relations: ServiceRelations }[]>(() => {
 		const term = this.searchTerm().trim().toLowerCase();
-		const types = this.selectedPropertyTypes();
-		const listingType = this.selectedListingType();
+		const categories = this.selectedCategories();
 		const status = this.selectedStatus();
 
-		return listings
+		return services
 			.filter((item) => {
-				const property = propertyForListing(item);
-
 				if (term) {
-					const haystack = [
-						item.title,
-						item.publicLocation,
-						property?.city,
-						property?.address,
-					]
-						.filter(Boolean)
-						.join(' ')
-						.toLowerCase();
+					const haystack = [item.title, item.description].filter(Boolean).join(' ').toLowerCase();
 					if (!haystack.includes(term)) {
 						return false;
 					}
 				}
 
-				if (types.length && (!property || !types.includes(property.type))) {
-					return false;
-				}
-
-				if (listingType && item.listingType !== listingType) {
+				if (categories.length && !categories.includes(item.category)) {
 					return false;
 				}
 
@@ -126,14 +67,14 @@ export class ExploreComponent {
 
 				return true;
 			})
-			.map((listing) => ({ listing, relations: relationsForListing(listing) }));
+			.map((service) => ({ service, relations: relationsForService(service) }));
 	});
 
-	view(item: Listing): void {
-		this._router.navigate(['/listing', item._id]);
+	view(item: Service): void {
+		this._router.navigate(['/service', item._id]);
 	}
 
-	viewRelation(relation: { type: ListingRelationType; id: string }): void {
+	viewRelation(relation: { type: ServiceRelationType; id: string }): void {
 		this._router.navigate(['/', relation.type, relation.id]);
 	}
 }

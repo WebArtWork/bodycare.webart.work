@@ -11,11 +11,11 @@ import { CommentEntityType, EntityComment } from '../../../comment/comment.inter
 
 const ENTITY_TYPE_OPTIONS: { value: CommentEntityType; label: string }[] = [
 	{ value: 'property', label: 'Об’єкт нерухомості' },
-	{ value: 'listing', label: 'Оголошення' },
+	{ value: 'service', label: 'Оголошення' },
 	{ value: 'complex', label: 'Комплекс' },
 	{ value: 'developer', label: 'Забудовник' },
-	{ value: 'agency', label: 'Агентство' },
-	{ value: 'agent', label: 'Агент' },
+	{ value: 'venue', label: 'Агентство' },
+	{ value: 'specialist', label: 'Агент' },
 	{ value: 'user', label: 'Користувач' },
 ];
 

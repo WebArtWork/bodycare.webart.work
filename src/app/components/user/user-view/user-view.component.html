@@ -17,32 +17,22 @@
 		<div class="card__row"><dt>Ел. пошта</dt><dd>{{ entity.contact.email }}</dd></div>
 		<div class="card__row"><dt>Телефон</dt><dd>{{ entity.contact.phone }}</dd></div>
 		<div class="card__row"><dt>Досвід</dt><dd>{{ entity.experienceYears }} років</dd></div>
-		@if (agent(); as ag) {
+		@if (specialist(); as sp) {
 			<div class="card__row">
-				<dt>Агент</dt>
+				<dt>Спеціаліст</dt>
 				<dd>
-					<button type="button" class="card__relation" (click)="viewAgent()">
-						<app-agent-icon [entity]="ag" />
+					<button type="button" class="card__relation" (click)="viewSpecialist()">
+						<app-specialist-icon [entity]="sp" />
 					</button>
 				</dd>
 			</div>
 		}
-		@if (agency(); as agc) {
+		@if (venue(); as v) {
 			<div class="card__row">
-				<dt>Агентство</dt>
+				<dt>Заклад</dt>
 				<dd>
-					<button type="button" class="card__relation" (click)="viewAgency()">
-						<app-agency-icon [entity]="agc" />
-					</button>
-				</dd>
-			</div>
-		}
-		@if (developer(); as dev) {
-			<div class="card__row">
-				<dt>Забудовник</dt>
-				<dd>
-					<button type="button" class="card__relation" (click)="viewDeveloper()">
-						<app-developer-icon [entity]="dev" />
+					<button type="button" class="card__relation" (click)="viewVenue()">
+						<app-venue-icon [entity]="v" />
 					</button>
 				</dd>
 			</div>
@@ -59,31 +49,23 @@
 		</div>
 	}
 
-	@if (entity.preferredPropertyTypes.length) {
-		<div class="card__meta">
-			@for (t of entity.preferredPropertyTypes; track t) {
-				<span class="card__badge">{{ t }}</span>
-			}
-		</div>
-	}
-
-	@if (ownedProperties().length) {
-		<h3 class="card__section-title">Об'єкти у власності</h3>
+	@if (relatedServices().length) {
+		<h3 class="card__section-title">Послуги</h3>
 		<div class="card__list">
-			@for (property of ownedProperties(); track property._id) {
-				<button type="button" class="card__list-item" (click)="viewProperty(property)">
-					<app-property-short [entity]="property" />
+			@for (service of relatedServices(); track service._id) {
+				<button type="button" class="card__list-item" (click)="viewService(service)">
+					<app-service-short [entity]="service" />
 				</button>
 			}
 		</div>
 	}
 
-	@if (relatedListings().length) {
-		<h3 class="card__section-title">Оголошення</h3>
+	@if (passportRecords().length) {
+		<h3 class="card__section-title">Цифровий паспорт</h3>
 		<div class="card__list">
-			@for (listing of relatedListings(); track listing._id) {
-				<button type="button" class="card__list-item" (click)="viewListing(listing)">
-					<app-listing-short [entity]="listing" />
+			@for (record of passportRecords(); track record._id) {
+				<button type="button" class="card__list-item" (click)="viewRecord(record)">
+					<app-record-short [entity]="record" />
 				</button>
 			}
 		</div>

@@ -1,0 +1,59 @@
+<form class="form" [formGroup]="form">
+		<div class="form__field">
+			<label class="form__label" for="category" translate>Категорія</label>
+			<p-select id="category" formControlName="category" [options]="categoryOptions" optionLabel="label" optionValue="value" appendTo="body" />
+
+		</div>
+		<div class="form__field">
+			<label class="form__label" for="bookingType" translate>Тип бронювання</label>
+			<p-select id="bookingType" formControlName="bookingType" [options]="bookingTypeOptions" optionLabel="label" optionValue="value" appendTo="body" />
+
+		</div>
+		<div class="form__field">
+			<label class="form__label" for="title" translate>Заголовок</label>
+			<input id="title" pInputText class="form__control" type="text" [formControlName]="'title'" [class._invalid]="form.get('title')?.invalid && form.get('title')?.touched" />
+			@if (form.get('title')?.hasError('required') && form.get('title')?.touched) {
+				<span class="form__error" translate>Заголовок обов'язковий</span>
+			}
+		</div>
+		<div class="form__field">
+			<label class="form__label" for="description" translate>Опис</label>
+			<textarea id="description" pTextarea class="form__control" rows="4" [formControlName]="'description'" [class._invalid]="form.get('description')?.invalid && form.get('description')?.touched"></textarea>
+			@if (form.get('description')?.hasError('required') && form.get('description')?.touched) {
+				<span class="form__error" translate>Опис обов'язковий</span>
+			}
+		</div>
+		<div class="form__field">
+			<label class="form__label" for="durationMinutes" translate>Тривалість (хв)</label>
+			<p-inputnumber id="durationMinutes" formControlName="durationMinutes" [min]="0" [invalid]="form.get('durationMinutes')?.invalid && form.get('durationMinutes')?.touched" />
+			@if (form.get('durationMinutes')?.hasError('required') && form.get('durationMinutes')?.touched) {
+				<span class="form__error" translate>Обов'язкове поле</span>
+			}
+		</div>
+		<div class="form__field">
+			<label class="form__label" for="price" translate>Ціна</label>
+			<p-inputnumber id="price" formControlName="price" [min]="0" [invalid]="form.get('price')?.invalid && form.get('price')?.touched" />
+			@if (form.get('price')?.hasError('required') && form.get('price')?.touched) {
+				<span class="form__error" translate>Ціна обов'язкова</span>
+			}
+			@if (form.get('price')?.hasError('min') && form.get('price')?.touched) {
+				<span class="form__error" translate>Має бути 0 або більше</span>
+			}
+		</div>
+		<div class="form__field">
+			<label class="form__label" for="currency" translate>Валюта</label>
+			<input id="currency" pInputText class="form__control" type="text" [formControlName]="'currency'" [class._invalid]="form.get('currency')?.invalid && form.get('currency')?.touched" />
+			@if (form.get('currency')?.hasError('required') && form.get('currency')?.touched) {
+				<span class="form__error" translate>Валюта обов'язкова</span>
+			}
+		</div>
+		<div class="form__field">
+			<label class="form__label" for="status" translate>Статус</label>
+			<p-select id="status" formControlName="status" [options]="statusOptions" optionLabel="label" optionValue="value" appendTo="body" />
+
+		</div>
+
+	<div class="form__actions">
+		<button type="button" pButton class="form__submit" [disabled]="form.invalid"><span translate>Зберегти</span></button>
+	</div>
+</form>

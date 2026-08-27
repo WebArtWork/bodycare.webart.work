@@ -7,20 +7,20 @@ import { InputNumberModule } from '@wawjs/ngx-prime/inputnumber';
 import { InputTextModule } from '@wawjs/ngx-prime/inputtext';
 import { SelectModule } from '@wawjs/ngx-prime/select';
 import { TranslateDirective } from '@wawjs/ngx-translate';
-import { PropertyRequest } from '../../../request/request.interface';
+import { ServiceRequest } from '../../../request/request.interface';
 
-const TRANSACTION_TYPE_OPTIONS: { value: PropertyRequest['transactionType']; label: string }[] = [
-	{ value: 'buy', label: 'Купівля' },
-	{ value: 'rent', label: 'Оренда' },
-	{ value: 'lease', label: 'Лізинг' },
-	{ value: 'find', label: 'Пошук' },
+const TRANSACTION_TYPE_OPTIONS: { value: ServiceRequest['transactionType']; label: string }[] = [
+	{ value: 'book-service', label: 'Запис на послугу' },
+	{ value: 'find-specialist', label: 'Пошук спеціаліста' },
+	{ value: 'consultation', label: 'Консультація' },
+	{ value: 'membership', label: 'Абонемент' },
 ];
 
-const VISIBILITY_OPTIONS: { value: PropertyRequest['visibility']; label: string }[] = [
+const VISIBILITY_OPTIONS: { value: ServiceRequest['visibility']; label: string }[] = [
 	{ value: 'public', label: 'Публічний' },
 	{ value: 'private', label: 'Приватний' },
-	{ value: 'shared-with-selected-agents', label: 'Спільний з обраними агентами' },
-	{ value: 'shared-with-agencies', label: 'Спільний з агенціями' },
+	{ value: 'shared-with-selected-specialists', label: 'Спільний з обраними спеціалістами' },
+	{ value: 'shared-with-venues', label: 'Спільний із закладами' },
 ];
 
 @Component({
@@ -39,7 +39,7 @@ const VISIBILITY_OPTIONS: { value: PropertyRequest['visibility']; label: string 
 	styleUrl: './request-form.component.scss',
 })
 export class RequestFormComponent {
-	@Input() entity?: PropertyRequest;
+	@Input() entity?: ServiceRequest;
 
 	readonly form: FormGroup;
 	readonly transactionTypeOptions = TRANSACTION_TYPE_OPTIONS;
@@ -47,18 +47,18 @@ export class RequestFormComponent {
 
 	constructor(private readonly fb: FormBuilder) {
 		this.form = this.fb.group({
-			transactionType: ['buy', Validators.required],
+			transactionType: ['book-service', Validators.required],
 			country: ['', Validators.required],
 			region: ['', Validators.required],
 			city: ['', Validators.required],
 			minPrice: [0, [Validators.required, Validators.min(0)]],
 			maxPrice: [0, [Validators.required, Validators.min(0)]],
 			currency: ['USD', Validators.required],
-			preferredSizeSqm: [0, Validators.min(0)],
-			roomRequirements: [0, Validators.min(0)],
-			conditionRequirements: [''],
-			constructionPreferences: [''],
-			preferredMoveDate: [''],
+			preferredDurationMinutes: [0, Validators.min(0)],
+			sessionsRequirements: [0, Validators.min(0)],
+			experienceRequirements: [''],
+			specialtyPreferences: [''],
+			preferredDate: [''],
 			expirationDate: ['', Validators.required],
 			visibility: ['public', Validators.required],
 		});

@@ -1,21 +1,20 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { ButtonModule } from '@wawjs/ngx-prime/button';
-import { AgencyIconComponent } from '../../../components/agency/agency-icon/agency-icon.component';
-import { AgentIconComponent } from '../../../components/agent/agent-icon/agent-icon.component';
-import { DeveloperIconComponent } from '../../../components/developer/developer-icon/developer-icon.component';
-import { Listing } from '../../../listing/listing.interface';
-import { listings } from '../../../listing/listing.data';
-import { ListingRelations, relationsForListing } from '../../../listing/listing-relations';
-import { ListingRelationType } from '../../../components/listing/listing-short/listing-short.component';
+import { VenueIconComponent } from '../../../components/venue/venue-icon/venue-icon.component';
+import { SpecialistIconComponent } from '../../../components/specialist/specialist-icon/specialist-icon.component';
+import { Service } from '../../../service/service.interface';
+import { services } from '../../../service/service.data';
+import { ServiceRelations, relationsForService } from '../../../service/service-relations';
+import { ServiceRelationType } from '../../../components/service/service-short/service-short.component';
 
 type FeedAction = 'favourite' | 'ignore';
 
-/** Fallback image shown when a listing has no photos or its photo fails to load. */
+/** Fallback image shown when a service has no photos or its photo fails to load. */
 const DEFAULT_PHOTO = '/property-default.svg';
 
 @Component({
-	imports: [ButtonModule, AgentIconComponent, AgencyIconComponent, DeveloperIconComponent],
+	imports: [ButtonModule, SpecialistIconComponent, VenueIconComponent],
 	templateUrl: './feed.component.html',
 	styleUrl: './feed.component.scss',
 })
@@ -25,27 +24,27 @@ export class FeedComponent {
 	readonly favouritedIds = signal<Set<string>>(this._restore('favourited'));
 	readonly ignoredIds = signal<Set<string>>(this._restore('ignored'));
 
-	readonly feed = computed<{ listing: Listing; relations: ListingRelations }[]>(() => {
+	readonly feed = computed<{ service: Service; relations: ServiceRelations }[]>(() => {
 		const favourited = this.favouritedIds();
 		const ignored = this.ignoredIds();
-		return listings
+		return services
 			.filter((item) => !favourited.has(item._id) && !ignored.has(item._id))
-			.map((listing) => ({ listing, relations: relationsForListing(listing) }));
+			.map((service) => ({ service, relations: relationsForService(service) }));
 	});
 
-	/** Navigates to the listing's detail page. */
-	view(item: Listing): void {
-		this._router.navigate(['/listing', item._id]);
+	/** Navigates to the service's detail page. */
+	view(item: Service): void {
+		this._router.navigate(['/service', item._id]);
 	}
 
-	/** Navigates to a related entity's detail page without triggering the listing's own click. */
-	viewRelation(event: Event, type: ListingRelationType, id: string): void {
+	/** Navigates to a related entity's detail page without triggering the service's own click. */
+	viewRelation(event: Event, type: ServiceRelationType, id: string): void {
 		event.stopPropagation();
 		this._router.navigate(['/', type, id]);
 	}
 
-	/** Marks a listing as favourited or ignored, persisting the choice to localStorage. */
-	act(item: Listing, action: FeedAction): void {
+	/** Marks a service as favourited or ignored, persisting the choice to localStorage. */
+	act(item: Service, action: FeedAction): void {
 		if (action === 'favourite') {
 			this._update('favourited', this.favouritedIds, item._id);
 		} else {
@@ -53,12 +52,12 @@ export class FeedComponent {
 		}
 	}
 
-	/** Returns the listing's first photo, falling back to the shared default image. */
-	photo(item: Listing): string {
+	/** Returns the service's first photo, falling back to the shared default image. */
+	photo(item: Service): string {
 		return item.photos[0] || DEFAULT_PHOTO;
 	}
 
-	/** Swaps in the default photo when the listing's image fails to load. */
+	/** Swaps in the default photo when the service's image fails to load. */
 	onPhotoError(event: Event): void {
 		(event.target as HTMLImageElement).src = DEFAULT_PHOTO;
 	}

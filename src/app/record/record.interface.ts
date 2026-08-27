@@ -1,20 +1,15 @@
 export type RecordType =
-	| 'infrastructure'
-	| 'utility'
-	| 'maintenance'
-	| 'repair'
-	| 'renovation'
-	| 'expense'
-	| 'inspection'
-	| 'incident'
-	| 'damage'
-	| 'improvement'
-	| 'equipment-installation'
-	| 'meter-replacement'
-	| 'document'
-	| 'ownership-change'
-	| 'tenant-change'
-	| 'valuation'
+	| 'haircut'
+	| 'coloring'
+	| 'manicure'
+	| 'pedicure'
+	| 'workout-session'
+	| 'personal-training'
+	| 'massage'
+	| 'skin-treatment'
+	| 'facial'
+	| 'waxing'
+	| 'measurement-checkin'
 	| 'note';
 
 export type RecordStatus = 'planned' | 'in-progress' | 'completed' | 'cancelled';
@@ -24,17 +19,17 @@ export type RecordVisibility =
 	| 'public-summary-private-details'
 	| 'private'
 	| 'shared-with-selected-users'
-	| 'shared-with-owners-tenants'
-	| 'shared-with-agent-agency-contractor-manager';
+	| 'shared-with-client'
+	| 'shared-with-specialist-venue';
 
 export interface RecordAttachment {
-	type: 'photo' | 'video' | 'invoice' | 'receipt' | 'plan' | 'diagram' | 'document';
+	type: 'before-photo' | 'after-photo' | 'progress-photo' | 'photo' | 'video' | 'receipt' | 'document';
 	url: string;
 }
 
-export interface PropertyRecord {
+export interface ClientRecord {
 	_id: string;
-	propertyId: string;
+	clientId: string;
 	recordType: RecordType;
 	title: string;
 	description: string;
@@ -42,14 +37,15 @@ export interface PropertyRecord {
 	creationDate: string;
 	authorUserId: string;
 	involvedUserIds: string[];
-	serviceProvider: string | null;
+	specialistId: string | null;
+	venueId: string | null;
 	cost: number | null;
 	currency: string | null;
 	quantity: number | null;
 	units: string | null;
 	status: RecordStatus;
 	attachments: RecordAttachment[];
-	locationInsideProperty: string | null;
+	bodyArea: string | null;
 	visibility: RecordVisibility;
 	verified: boolean;
 }

@@ -1,7 +1,7 @@
 <article class="card">
-	@if (property) {
-		<div class="card__list-item" (click)="viewProperty()">
-			<app-property-short [entity]="property" />
+	@if (client) {
+		<div class="card__list-item" (click)="viewClient()">
+			<app-user-icon [entity]="client" />
 		</div>
 	}
 
@@ -26,8 +26,11 @@
 				<dd><button type="button" class="card__relation" (click)="viewUser(author)"><app-user-icon [entity]="author" /></button></dd>
 			</div>
 		}
-		@if (entity.serviceProvider) {
-			<div class="card__row"><dt>Постачальник послуг</dt><dd>{{ entity.serviceProvider }}</dd></div>
+		@if (specialist) {
+			<div class="card__row"><dt>Спеціаліст</dt><dd><button type="button" class="card__relation" (click)="viewSpecialist()">{{ specialist.displayName }}</button></dd></div>
+		}
+		@if (venue) {
+			<div class="card__row"><dt>Заклад</dt><dd><button type="button" class="card__relation" (click)="viewVenue()">{{ venue.name }}</button></dd></div>
 		}
 		@if (entity.cost !== null) {
 			<div class="card__row"><dt>Вартість</dt><dd>{{ entity.cost }} {{ entity.currency }}</dd></div>
@@ -35,8 +38,8 @@
 		@if (entity.quantity !== null) {
 			<div class="card__row"><dt>Кількість</dt><dd>{{ entity.quantity }} {{ entity.units }}</dd></div>
 		}
-		@if (entity.locationInsideProperty) {
-			<div class="card__row"><dt>Розташування в об'єкті</dt><dd>{{ entity.locationInsideProperty }}</dd></div>
+		@if (entity.bodyArea) {
+			<div class="card__row"><dt>Ділянка тіла</dt><dd>{{ entity.bodyArea }}</dd></div>
 		}
 
 	@if (involvedUsers.length) {

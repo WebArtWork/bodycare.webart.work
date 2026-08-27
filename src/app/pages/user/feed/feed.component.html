@@ -5,8 +5,8 @@
 
 	@if (items.length) {
 		<div class="feed__scroll">
-			@for (row of items; track row.listing._id) {
-				@let item = row.listing;
+			@for (row of items; track row.service._id) {
+				@let item = row.service;
 				<section class="feed__section">
 					<img
 						class="feed__img"
@@ -20,7 +20,7 @@
 					<div class="feed__info">
 						<div class="feed__chips">
 							<span class="feed__chip">{{ item.price }} {{ item.currency }}</span>
-							<span class="feed__chip">{{ item.listingType }}</span>
+							<span class="feed__chip">{{ item.category }}</span>
 							<span class="feed__chip">{{ item.status }}</span>
 						</div>
 
@@ -35,24 +35,20 @@
 						</div>
 
 						<div class="feed__location">
-							<span class="feed__location-icon"><i class="pi pi-map-marker"></i></span>
-							<span class="feed__location-text">{{ item.publicLocation }}</span>
+							<span class="feed__location-icon"><i class="pi pi-clock"></i></span>
+							<span class="feed__location-text">{{ item.durationMinutes }} хв</span>
 						</div>
 
-						@if (row.relations.agent || row.relations.agency || row.relations.developer) {
+						@if (row.relations.specialist || row.relations.venue) {
 							<div class="feed__relations">
-								@if (row.relations.agent; as agent) {
-									<button type="button" class="feed__relation" (click)="viewRelation($event, 'agent', agent._id)">
-										<app-agent-icon [entity]="agent" />
+								@if (row.relations.specialist; as specialist) {
+									<button type="button" class="feed__relation" (click)="viewRelation($event, 'specialist', specialist._id)">
+										<app-specialist-icon [entity]="specialist" />
 									</button>
 								}
-								@if (row.relations.agency; as agency) {
-									<button type="button" class="feed__relation" (click)="viewRelation($event, 'agency', agency._id)">
-										<app-agency-icon [entity]="agency" />
-									</button>
-								} @else if (row.relations.developer; as developer) {
-									<button type="button" class="feed__relation" (click)="viewRelation($event, 'developer', developer._id)">
-										<app-developer-icon [entity]="developer" />
+								@if (row.relations.venue; as venue) {
+									<button type="button" class="feed__relation" (click)="viewRelation($event, 'venue', venue._id)">
+										<app-venue-icon [entity]="venue" />
 									</button>
 								}
 							</div>

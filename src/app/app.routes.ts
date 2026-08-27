@@ -13,9 +13,9 @@ export const routes: Routes = [
 			),
 		data: {
 			meta: {
-				title: 'Neryxomka — цифровий паспорт нерухомості',
+				title: 'Neryxomka — цифровий паспорт краси і форми',
 				description:
-					'Neryxomka показує повну історію об’єкта нерухомості — ремонти, обслуговування, комунікації — поруч з оголошеннями, картою та профілями агентств.',
+					'Neryxomka показує повну історію відвідувань клієнта — стрижки, тренування, догляд — поруч з послугами, картою та профілями спеціалістів і закладів.',
 			},
 		},
 		loadChildren: () =>
@@ -36,7 +36,7 @@ export const routes: Routes = [
 					meta: {
 						title: 'Вхід',
 						description:
-							'Увійдіть або зареєструйтесь у Neryxomka, щоб переглядати цифрові паспорти об’єктів, стрічку пропозицій і керувати профілем.',
+							'Увійдіть або зареєструйтесь у Neryxomka, щоб переглядати цифрові паспорти клієнтів, стрічку послуг і керувати профілем.',
 					},
 				},
 				loadChildren: () =>
@@ -76,7 +76,7 @@ export const routes: Routes = [
 					meta: {
 						title: 'Редактор',
 						description:
-							'Перевірте форми додавання об’єктів, оголошень, комплексів, агентств та агентів у Neryxomka.',
+							'Перевірте форми додавання записів, послуг, закладів та спеціалістів у Neryxomka.',
 						index: false,
 					},
 				},
@@ -147,7 +147,7 @@ export const routes: Routes = [
 				data: {
 					meta: {
 						title: 'Для користувачів',
-						description: 'Знаходьте житло без переплат посередникам разом з Neryxomka.',
+						description: 'Знаходьте перевірених спеціалістів краси та фітнесу разом з Neryxomka.',
 					},
 				},
 				loadChildren: () =>
@@ -156,44 +156,30 @@ export const routes: Routes = [
 					),
 			},
 			{
-				path: 'for-agents',
+				path: 'for-specialists',
 				canActivate: [MetaGuard],
 				data: {
 					meta: {
-						title: 'Для агентів',
-						description: 'Розвивайте свою практику агента нерухомості з Neryxomka.',
+						title: 'Для спеціалістів',
+						description: 'Розвивайте свою практику спеціаліста краси та фітнесу з Neryxomka.',
 					},
 				},
 				loadChildren: () =>
-					import('./pages/user/for-agents/for-agents.routes').then(
+					import('./pages/user/for-specialists/for-specialists.routes').then(
 						(m) => m.routes,
 					),
 			},
 			{
-				path: 'for-developers',
+				path: 'for-venues',
 				canActivate: [MetaGuard],
 				data: {
 					meta: {
-						title: 'Для забудовників',
-						description: 'Покажіть свої житлові комплекси покупцям на Neryxomka.',
+						title: 'Для закладів',
+						description: 'Розвивайте свій заклад (салон, спортзал, спа) разом з Neryxomka.',
 					},
 				},
 				loadChildren: () =>
-					import('./pages/user/for-developers/for-developers.routes').then(
-						(m) => m.routes,
-					),
-			},
-			{
-				path: 'for-agencies',
-				canActivate: [MetaGuard],
-				data: {
-					meta: {
-						title: 'Для агентств',
-						description: 'Розвивайте агентство нерухомості разом з Neryxomka.',
-					},
-				},
-				loadChildren: () =>
-					import('./pages/user/for-agencies/for-agencies.routes').then(
+					import('./pages/user/for-venues/for-venues.routes').then(
 						(m) => m.routes,
 					),
 			},
@@ -204,7 +190,7 @@ export const routes: Routes = [
 					meta: {
 						title: 'Стрічка',
 						description:
-							'Перегортайте стрічку об’єктів нерухомості Neryxomka — відкладайте цікаве в обране, пропускайте зайве.',
+							'Перегортайте стрічку послуг краси та фітнесу Neryxomka — відкладайте цікаве в обране, пропускайте зайве.',
 					},
 				},
 				loadChildren: () =>
@@ -213,47 +199,17 @@ export const routes: Routes = [
 					),
 			},
 			{
-				path: 'properties',
+				path: 'venues',
 				canActivate: [MetaGuard],
 				data: {
 					meta: {
-						title: 'Об’єкти',
+						title: 'Заклади',
 						description:
-							'Перегляньте всі об’єкти нерухомості в цифровому паспорті Neryxomka.',
+							'Перегляньте всі заклади (салони, спортзали, спа), представлені в Neryxomka.',
 					},
 				},
 				loadChildren: () =>
-					import('./pages/user/properties/properties.routes').then(
-						(m) => m.routes,
-					),
-			},
-			{
-				path: 'agencies',
-				canActivate: [MetaGuard],
-				data: {
-					meta: {
-						title: 'Агентства',
-						description:
-							'Перегляньте всі агентства нерухомості, представлені в Neryxomka.',
-					},
-				},
-				loadChildren: () =>
-					import('./pages/user/agencies/agencies.routes').then(
-						(m) => m.routes,
-					),
-			},
-			{
-				path: 'developers',
-				canActivate: [MetaGuard],
-				data: {
-					meta: {
-						title: 'Забудовники',
-						description:
-							'Перегляньте всіх забудовників, представлених у Neryxomka.',
-					},
-				},
-				loadChildren: () =>
-					import('./pages/user/developers/developers.routes').then(
+					import('./pages/user/venues/venues.routes').then(
 						(m) => m.routes,
 					),
 			},
@@ -264,7 +220,7 @@ export const routes: Routes = [
 					meta: {
 						title: 'Пошук',
 						description:
-							'Шукайте й фільтруйте оголошення нерухомості Neryxomka за типом, ціною, статусом і розташуванням.',
+							'Шукайте й фільтруйте послуги краси та фітнесу Neryxomka за категорією, ціною, статусом і містом.',
 					},
 				},
 				loadChildren: () =>
@@ -279,7 +235,7 @@ export const routes: Routes = [
 					meta: {
 						title: 'Карта',
 						description:
-							'Знаходьте об’єкти нерухомості на карті Neryxomka за їхнім реальним розташуванням.',
+							'Знаходьте заклади краси та фітнесу на карті Neryxomka за їхнім реальним розташуванням.',
 					},
 				},
 				loadChildren: () =>
@@ -288,32 +244,17 @@ export const routes: Routes = [
 					),
 			},
 			{
-				path: 'property/:id',
+				path: 'service/:id',
 				canActivate: [MetaGuard],
 				data: {
 					meta: {
-						title: 'Об’єкт нерухомості',
+						title: 'Послуга',
 						description:
-							'Цифровий паспорт об’єкта нерухомості: характеристики, повна історія ремонтів і обслуговування, пов’язані оголошення.',
+							'Деталі послуги краси або фітнесу в Neryxomka.',
 					},
 				},
 				loadChildren: () =>
-					import('./pages/user/property/property.routes').then(
-						(m) => m.routes,
-					),
-			},
-			{
-				path: 'listing/:id',
-				canActivate: [MetaGuard],
-				data: {
-					meta: {
-						title: 'Оголошення',
-						description:
-							'Деталі оголошення про продаж або оренду нерухомості в Neryxomka.',
-					},
-				},
-				loadChildren: () =>
-					import('./pages/user/listing/listing.routes').then(
+					import('./pages/user/service/service.routes').then(
 						(m) => m.routes,
 					),
 			},
@@ -322,9 +263,9 @@ export const routes: Routes = [
 				canActivate: [MetaGuard],
 				data: {
 					meta: {
-						title: 'Запис історії об’єкта',
+						title: 'Запис історії клієнта',
 						description:
-							'Запис з цифрового паспорта об’єкта: ремонт, заміна комунікацій або обслуговування.',
+							'Запис з цифрового паспорта клієнта: стрижка, тренування, догляд або процедура.',
 					},
 				},
 				loadChildren: () =>
@@ -333,62 +274,32 @@ export const routes: Routes = [
 					),
 			},
 			{
-				path: 'complex/:id',
+				path: 'venue/:id',
 				canActivate: [MetaGuard],
 				data: {
 					meta: {
-						title: 'Житловий комплекс',
+						title: 'Заклад',
 						description:
-							'Житловий комплекс у Neryxomka: об’єкти, забудовник і деталі проєкту.',
+							'Профіль закладу в Neryxomka: спеціалісти, послуги та відгуки.',
 					},
 				},
 				loadChildren: () =>
-					import('./pages/user/complex/complex.routes').then(
+					import('./pages/user/venue/venue.routes').then(
 						(m) => m.routes,
 					),
 			},
 			{
-				path: 'developer/:id',
+				path: 'specialist/:id',
 				canActivate: [MetaGuard],
 				data: {
 					meta: {
-						title: 'Забудовник',
+						title: 'Спеціаліст',
 						description:
-							'Профіль забудовника в Neryxomka: реалізовані комплекси та об’єкти.',
+							'Профіль спеціаліста в Neryxomka: контакти, заклад та послуги.',
 					},
 				},
 				loadChildren: () =>
-					import('./pages/user/developer/developer.routes').then(
-						(m) => m.routes,
-					),
-			},
-			{
-				path: 'agency/:id',
-				canActivate: [MetaGuard],
-				data: {
-					meta: {
-						title: 'Агентство',
-						description:
-							'Профіль агентства нерухомості в Neryxomka: агенти, об’єкти й оголошення.',
-					},
-				},
-				loadChildren: () =>
-					import('./pages/user/agency/agency.routes').then(
-						(m) => m.routes,
-					),
-			},
-			{
-				path: 'agent/:id',
-				canActivate: [MetaGuard],
-				data: {
-					meta: {
-						title: 'Агент',
-						description:
-							'Профіль агента нерухомості в Neryxomka: контакти, агентство та об’єкти в роботі.',
-					},
-				},
-				loadChildren: () =>
-					import('./pages/user/agent/agent.routes').then(
+					import('./pages/user/specialist/specialist.routes').then(
 						(m) => m.routes,
 					),
 			},

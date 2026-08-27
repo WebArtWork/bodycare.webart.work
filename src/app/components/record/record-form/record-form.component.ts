@@ -8,7 +8,7 @@ import { InputTextModule } from '@wawjs/ngx-prime/inputtext';
 import { SelectModule } from '@wawjs/ngx-prime/select';
 import { TextareaModule } from '@wawjs/ngx-prime/textarea';
 import { TranslateDirective } from '@wawjs/ngx-translate';
-import { PropertyRecord } from '../../../record/record.interface';
+import { ClientRecord } from '../../../record/record.interface';
 import {
 	RECORD_STATUS_OPTIONS,
 	RECORD_TYPE_OPTIONS,
@@ -31,8 +31,8 @@ import {
 	templateUrl: './record-form.component.html',
 	styleUrl: './record-form.component.scss',
 })
-export class RecordFormComponent {
-	@Input() entity?: PropertyRecord;
+export class RecordFormComponent implements OnInit {
+	@Input() entity?: ClientRecord;
 
 	readonly form: FormGroup;
 	readonly recordTypeOptions = RECORD_TYPE_OPTIONS;
@@ -41,17 +41,18 @@ export class RecordFormComponent {
 
 	constructor(private readonly fb: FormBuilder) {
 		this.form = this.fb.group({
-			recordType: ['maintenance', Validators.required],
+			recordType: ['note', Validators.required],
 			title: ['', Validators.required],
 			description: ['', Validators.required],
 			eventDate: ['', Validators.required],
-			serviceProvider: [''],
+			specialistId: [null],
+			venueId: [null],
 			cost: [null],
 			currency: [null],
 			quantity: [null],
 			units: [''],
 			status: ['planned', Validators.required],
-			locationInsideProperty: [''],
+			bodyArea: [''],
 			visibility: ['private', Validators.required],
 		});
 	}

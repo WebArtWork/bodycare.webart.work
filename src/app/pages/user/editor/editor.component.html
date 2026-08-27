@@ -11,26 +11,20 @@
 		</div>
 
 		@switch (selectedType()) {
-			@case ('property') {
-				<app-property-form />
-			}
-			@case ('listing') {
-				<app-listing-form />
+			@case ('service') {
+				<app-service-form />
 			}
 			@case ('record') {
 				<app-record-form />
 			}
-			@case ('complex') {
-				<app-complex-form />
+			@case ('venue') {
+				<app-venue-form />
 			}
-			@case ('developer') {
-				<app-developer-form />
+			@case ('specialist') {
+				<app-specialist-form />
 			}
-			@case ('agency') {
-				<app-agency-form />
-			}
-			@case ('agent') {
-				<app-agent-form />
+			@case ('request') {
+				<app-request-form />
 			}
 		}
 

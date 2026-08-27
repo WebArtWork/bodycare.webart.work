@@ -3,7 +3,9 @@
 	@if (entity(); as item) {
 	<app-record-view
 		[entity]="item"
-		[property]="property()"
+		[client]="client()"
+		[specialist]="specialist()"
+		[venue]="venue()"
 		[author]="author()"
 		[involvedUsers]="involvedUsers()"
 	/>

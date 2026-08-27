@@ -2,12 +2,10 @@ import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@a
 import { Router } from '@angular/router';
 import { ButtonModule } from '@wawjs/ngx-prime/button';
 import { CardModule } from '@wawjs/ngx-prime/card';
-import { PropertyShortComponent } from '../../../components/property/property-short/property-short.component';
+import { VenueShortComponent } from '../../../components/venue/venue-short/venue-short.component';
 import { LeafletMapComponent, LeafletMapMarker } from '../../../shared/leaflet-map/leaflet-map.component';
-import { Property } from '../../../property/property.interface';
-import { properties } from '../../../property/property.data';
-
-type MapCategory = 'properties' | 'agencies' | 'developers';
+import { Venue } from '../../../venue/venue.interface';
+import { venues } from '../../../venue/venue.data';
 
 /**
  * Deviation note: `@wawjs/ngx-map`'s `MapComponent` (`lib-map`) wraps
@@ -20,7 +18,7 @@ type MapCategory = 'properties' | 'agencies' | 'developers';
  * needs no API key at all.
  */
 @Component({
-	imports: [ButtonModule, CardModule, PropertyShortComponent, LeafletMapComponent],
+	imports: [ButtonModule, CardModule, VenueShortComponent, LeafletMapComponent],
 	templateUrl: './map.component.html',
 	styleUrl: './map.component.scss',
 	changeDetection: ChangeDetectionStrategy.OnPush,
@@ -28,27 +26,19 @@ type MapCategory = 'properties' | 'agencies' | 'developers';
 export class MapComponent {
 	private readonly _router = inject(Router);
 
-	readonly categories: { value: MapCategory; label: string }[] = [
-		{ value: 'properties', label: 'Об’єкти' },
-		{ value: 'agencies', label: 'Агенції' },
-		{ value: 'developers', label: 'Розробники' },
-	];
-
-	readonly activeCategory = signal<MapCategory>('properties');
-
-	readonly selected = signal<Property | null>(null);
+	readonly selected = signal<Venue | null>(null);
 	private readonly _focusCenter = signal<{ lat: number; lng: number } | null>(null);
 
-	readonly propertiesWithCoords = computed(() => properties.filter((item) => item.coordinates));
+	readonly venuesWithCoords = computed(() => venues.filter((item) => item.coordinates));
 
 	private readonly _defaultCenter = computed<{ lat: number; lng: number }>(() => {
-		const withCoords = this.propertiesWithCoords();
+		const withCoords = this.venuesWithCoords();
 		if (!withCoords.length) {
 			return { lat: 50.4501, lng: 30.5234 }; // Kyiv, as a sensible default
 		}
 
-		const lats = withCoords.map((item) => item.coordinates.lat);
-		const lngs = withCoords.map((item) => item.coordinates.lng);
+		const lats = withCoords.map((item) => item.coordinates!.lat);
+		const lngs = withCoords.map((item) => item.coordinates!.lng);
 		return {
 			lat: (Math.min(...lats) + Math.max(...lats)) / 2,
 			lng: (Math.min(...lngs) + Math.max(...lngs)) / 2,
@@ -60,28 +50,23 @@ export class MapComponent {
 	readonly zoom = 12;
 
 	readonly markers = computed<LeafletMapMarker[]>(() =>
-		this.propertiesWithCoords().map((property) => ({
-			id: property._id,
-			position: property.coordinates,
-			title: property.address,
+		this.venuesWithCoords().map((venue) => ({
+			id: venue._id,
+			position: venue.coordinates!,
+			title: venue.name,
 		})),
 	);
 
-	selectCategory(category: MapCategory): void {
-		this.activeCategory.set(category);
-		this.selected.set(null);
-	}
-
 	onMarkerSelected(marker: LeafletMapMarker): void {
-		const property = properties.find((item) => item._id === marker.id) ?? null;
-		this.selected.set(property);
+		const venue = venues.find((item) => item._id === marker.id) ?? null;
+		this.selected.set(venue);
 	}
 
 	closePanel(): void {
 		this.selected.set(null);
 	}
 
-	view(property: Property): void {
-		this._router.navigate(['/property', property._id]);
+	view(venue: Venue): void {
+		this._router.navigate(['/venue', venue._id]);
 	}
 }
