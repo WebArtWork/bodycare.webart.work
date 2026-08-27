@@ -1,4 +1,4 @@
-# Neryxomka Roadmap
+# BodyCare Roadmap
 
 Status: APPROVED. Scope: static investor-facing demo only. Nothing beyond
 this is planned yet.

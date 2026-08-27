@@ -18,7 +18,7 @@ export class ForUsersPageComponent {
 
 	readonly faq = [
 		{
-			question: 'Скільки коштує користування Neryxomka?',
+			question: 'Скільки коштує користування BodyCare?',
 			answer: 'Пошук і перегляд послуг для клієнтів безкоштовні.',
 		},
 		{

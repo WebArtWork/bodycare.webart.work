@@ -13,9 +13,9 @@ export const routes: Routes = [
 			),
 		data: {
 			meta: {
-				title: 'Neryxomka — цифровий паспорт краси і форми',
+				title: 'BodyCare — цифровий паспорт краси і форми',
 				description:
-					'Neryxomka показує повну історію відвідувань клієнта — стрижки, тренування, догляд — поруч з послугами, картою та профілями спеціалістів і закладів.',
+					'BodyCare показує повну історію відвідувань клієнта — стрижки, тренування, догляд — поруч з послугами, картою та профілями спеціалістів і закладів.',
 			},
 		},
 		loadChildren: () =>
@@ -36,7 +36,7 @@ export const routes: Routes = [
 					meta: {
 						title: 'Вхід',
 						description:
-							'Увійдіть або зареєструйтесь у Neryxomka, щоб переглядати цифрові паспорти клієнтів, стрічку послуг і керувати профілем.',
+							'Увійдіть або зареєструйтесь у BodyCare, щоб переглядати цифрові паспорти клієнтів, стрічку послуг і керувати профілем.',
 					},
 				},
 				loadChildren: () =>
@@ -61,7 +61,7 @@ export const routes: Routes = [
 					meta: {
 						title: 'Мій профіль',
 						description:
-							'Керуйте особистими даними профілю Neryxomka: ім’я, телефон, фото та коротка інформація про себе.',
+							'Керуйте особистими даними профілю BodyCare: ім’я, телефон, фото та коротка інформація про себе.',
 					},
 				},
 				loadChildren: () =>
@@ -76,7 +76,7 @@ export const routes: Routes = [
 					meta: {
 						title: 'Редактор',
 						description:
-							'Перевірте форми додавання записів, послуг, закладів та спеціалістів у Neryxomka.',
+							'Перевірте форми додавання записів, послуг, закладів та спеціалістів у BodyCare.',
 						index: false,
 					},
 				},
@@ -92,7 +92,7 @@ export const routes: Routes = [
 					shareKind: 'profile',
 					meta: {
 						title: 'Поділитися профілем',
-						description: 'Відскануйте QR-код, щоб відкрити мій профіль Neryxomka.',
+						description: 'Відскануйте QR-код, щоб відкрити мій профіль BodyCare.',
 						index: false,
 					},
 				},
@@ -117,7 +117,7 @@ export const routes: Routes = [
 				data: {
 					meta: {
 						title: 'Мої налаштування',
-						description: 'Налаштування облікового запису Neryxomka.',
+						description: 'Налаштування облікового запису BodyCare.',
 						index: false,
 					},
 				},
@@ -132,8 +132,8 @@ export const routes: Routes = [
 				data: {
 					shareKind: 'app',
 					meta: {
-						title: 'Поділитися Neryxomka',
-						description: 'Відскануйте QR-код, щоб приєднатися до Neryxomka за кілька секунд.',
+						title: 'Поділитися BodyCare',
+						description: 'Відскануйте QR-код, щоб приєднатися до BodyCare за кілька секунд.',
 					},
 				},
 				loadChildren: () =>
@@ -147,7 +147,7 @@ export const routes: Routes = [
 				data: {
 					meta: {
 						title: 'Для користувачів',
-						description: 'Знаходьте перевірених спеціалістів краси та фітнесу разом з Neryxomka.',
+						description: 'Знаходьте перевірених спеціалістів краси та фітнесу разом з BodyCare.',
 					},
 				},
 				loadChildren: () =>
@@ -161,7 +161,7 @@ export const routes: Routes = [
 				data: {
 					meta: {
 						title: 'Для спеціалістів',
-						description: 'Розвивайте свою практику спеціаліста краси та фітнесу з Neryxomka.',
+						description: 'Розвивайте свою практику спеціаліста краси та фітнесу з BodyCare.',
 					},
 				},
 				loadChildren: () =>
@@ -175,7 +175,7 @@ export const routes: Routes = [
 				data: {
 					meta: {
 						title: 'Для закладів',
-						description: 'Розвивайте свій заклад (салон, спортзал, спа) разом з Neryxomka.',
+						description: 'Розвивайте свій заклад (салон, спортзал, спа) разом з BodyCare.',
 					},
 				},
 				loadChildren: () =>
@@ -190,7 +190,7 @@ export const routes: Routes = [
 					meta: {
 						title: 'Стрічка',
 						description:
-							'Перегортайте стрічку послуг краси та фітнесу Neryxomka — відкладайте цікаве в обране, пропускайте зайве.',
+							'Перегортайте стрічку послуг краси та фітнесу BodyCare — відкладайте цікаве в обране, пропускайте зайве.',
 					},
 				},
 				loadChildren: () =>
@@ -205,7 +205,7 @@ export const routes: Routes = [
 					meta: {
 						title: 'Заклади',
 						description:
-							'Перегляньте всі заклади (салони, спортзали, спа), представлені в Neryxomka.',
+							'Перегляньте всі заклади (салони, спортзали, спа), представлені в BodyCare.',
 					},
 				},
 				loadChildren: () =>
@@ -220,7 +220,7 @@ export const routes: Routes = [
 					meta: {
 						title: 'Пошук',
 						description:
-							'Шукайте й фільтруйте послуги краси та фітнесу Neryxomka за категорією, ціною, статусом і містом.',
+							'Шукайте й фільтруйте послуги краси та фітнесу BodyCare за категорією, ціною, статусом і містом.',
 					},
 				},
 				loadChildren: () =>
@@ -235,7 +235,7 @@ export const routes: Routes = [
 					meta: {
 						title: 'Карта',
 						description:
-							'Знаходьте заклади краси та фітнесу на карті Neryxomka за їхнім реальним розташуванням.',
+							'Знаходьте заклади краси та фітнесу на карті BodyCare за їхнім реальним розташуванням.',
 					},
 				},
 				loadChildren: () =>
@@ -250,7 +250,7 @@ export const routes: Routes = [
 					meta: {
 						title: 'Послуга',
 						description:
-							'Деталі послуги краси або фітнесу в Neryxomka.',
+							'Деталі послуги краси або фітнесу в BodyCare.',
 					},
 				},
 				loadChildren: () =>
@@ -280,7 +280,7 @@ export const routes: Routes = [
 					meta: {
 						title: 'Заклад',
 						description:
-							'Профіль закладу в Neryxomka: спеціалісти, послуги та відгуки.',
+							'Профіль закладу в BodyCare: спеціалісти, послуги та відгуки.',
 					},
 				},
 				loadChildren: () =>
@@ -295,7 +295,7 @@ export const routes: Routes = [
 					meta: {
 						title: 'Спеціаліст',
 						description:
-							'Профіль спеціаліста в Neryxomka: контакти, заклад та послуги.',
+							'Профіль спеціаліста в BodyCare: контакти, заклад та послуги.',
 					},
 				},
 				loadChildren: () =>
@@ -309,7 +309,7 @@ export const routes: Routes = [
 				data: {
 					meta: {
 						title: 'Профіль користувача',
-						description: 'Публічний профіль користувача Neryxomka.',
+						description: 'Публічний профіль користувача BodyCare.',
 					},
 				},
 				loadChildren: () =>
@@ -333,7 +333,7 @@ export const routes: Routes = [
 				data: {
 					meta: {
 						title: 'Користувачі',
-						description: 'Адміністрування користувачів Neryxomka.',
+						description: 'Адміністрування користувачів BodyCare.',
 						index: false,
 					},
 				},
@@ -346,7 +346,7 @@ export const routes: Routes = [
 				data: {
 					meta: {
 						title: 'Клієнти',
-						description: 'Адміністрування клієнтів Neryxomka.',
+						description: 'Адміністрування клієнтів BodyCare.',
 						index: false,
 					},
 				},
@@ -359,7 +359,7 @@ export const routes: Routes = [
 				data: {
 					meta: {
 						title: 'Форми',
-						description: 'Адміністрування динамічних форм Neryxomka.',
+						description: 'Адміністрування динамічних форм BodyCare.',
 						index: false,
 					},
 				},
@@ -372,7 +372,7 @@ export const routes: Routes = [
 				data: {
 					meta: {
 						title: 'Форми',
-						description: 'Редагування динамічної форми Neryxomka.',
+						description: 'Редагування динамічної форми BodyCare.',
 						index: false,
 					},
 				},
