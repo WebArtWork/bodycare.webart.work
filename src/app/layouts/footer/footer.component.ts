@@ -1,4 +1,5 @@
 import {
+	ChangeDetectionStrategy,
 	Component,
 	computed,
 	inject,
@@ -12,6 +13,7 @@ import { ThemeDensity, ThemeMode, ThemeRadius, ThemeState } from '../../theme/th
 import { FooterLink } from './footer.types';
 
 @Component({
+	changeDetection: ChangeDetectionStrategy.OnPush,
 	selector: 'layout-footer',
 	templateUrl: './footer.component.html',
 	imports: [RouterLink, TranslateDirective, ButtonModule],

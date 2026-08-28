@@ -1,4 +1,4 @@
-import { Component, computed, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { ButtonModule } from '@wawjs/ngx-prime/button';
 import { VenueIconComponent } from '../../../components/venue/venue-icon/venue-icon.component';
@@ -14,6 +14,7 @@ type FeedAction = 'favourite' | 'ignore';
 const DEFAULT_PHOTO = '/service-default.svg';
 
 @Component({
+	changeDetection: ChangeDetectionStrategy.OnPush,
 	imports: [ButtonModule, SpecialistIconComponent, VenueIconComponent],
 	templateUrl: './feed.component.html',
 	styleUrl: './feed.component.scss',

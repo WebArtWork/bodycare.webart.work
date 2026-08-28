@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, input } from '@angular/core';
 import { Router } from '@angular/router';
 import { Venue } from '../../../venue/venue.interface';
 import { Specialist } from '../../../specialist/specialist.interface';
@@ -14,22 +14,25 @@ import { SpecialistIconComponent } from '../../specialist/specialist-icon/specia
 	imports: [CommonModule, VenueIconComponent, SpecialistIconComponent],
 	templateUrl: './service-view.component.html',
 	styleUrl: './service-view.component.scss',
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ServiceViewComponent {
 	private readonly _router = inject(Router);
 
-	@Input() entity!: Service;
-	@Input() venue?: Venue | null;
-	@Input() specialist?: Specialist | null;
+	readonly entity = input.required<Service>();
+	readonly venue = input<Venue | null>(null);
+	readonly specialist = input<Specialist | null>(null);
 
 	readonly categoryLabels = SERVICE_CATEGORY_LABELS;
 	readonly statusLabels = SERVICE_STATUS_LABELS;
 
 	viewVenue(): void {
-		if (this.venue) this._router.navigate(['/venue', this.venue._id]);
+		const venue = this.venue();
+		if (venue) this._router.navigate(['/venue', venue._id]);
 	}
 
 	viewSpecialist(): void {
-		if (this.specialist) this._router.navigate(['/specialist', this.specialist._id]);
+		const specialist = this.specialist();
+		if (specialist) this._router.navigate(['/specialist', specialist._id]);
 	}
 }

@@ -1,4 +1,5 @@
 import {
+	ChangeDetectionStrategy,
 	Component,
 	computed,
 	inject,
@@ -36,6 +37,7 @@ const signSchema = schema<SignModel>((path) => {
 });
 
 @Component({
+	changeDetection: ChangeDetectionStrategy.OnPush,
 	imports: [
 		SpiderComponent,
 		FormField,

@@ -1,4 +1,4 @@
-import { Component, computed, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs';
@@ -9,6 +9,7 @@ import { services } from '../../../service/service.data';
 import { ServiceRelations, relationsForService } from '../../../service/service-relations';
 
 @Component({
+	changeDetection: ChangeDetectionStrategy.OnPush,
 	imports: [ServiceViewComponent, CardModule],
 	templateUrl: './service.component.html',
 	styleUrl: './service.component.scss',

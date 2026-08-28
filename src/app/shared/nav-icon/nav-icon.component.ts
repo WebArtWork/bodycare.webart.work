@@ -1,4 +1,4 @@
-import { Component, computed, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { TranslateDirective } from '@wawjs/ngx-translate';
 
@@ -10,6 +10,7 @@ import { TranslateDirective } from '@wawjs/ngx-translate';
  * original rendered with, so no other styling needs to change.
  */
 @Component({
+	changeDetection: ChangeDetectionStrategy.OnPush,
 	selector: 'app-nav-icon',
 	imports: [RouterLink, RouterLinkActive, TranslateDirective],
 	templateUrl: './nav-icon.component.html',

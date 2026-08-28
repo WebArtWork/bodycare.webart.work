@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { TranslateService } from '@wawjs/ngx-translate';
 import { NavIconComponent } from '../../shared/nav-icon/nav-icon.component';
 
@@ -9,6 +9,7 @@ import { NavIconComponent } from '../../shared/nav-icon/nav-icon.component';
  * and up where the topbar/sidebar keep their existing desktop behavior.
  */
 @Component({
+	changeDetection: ChangeDetectionStrategy.OnPush,
 	selector: 'layout-mobile-nav',
 	templateUrl: './mobile-nav.component.html',
 	imports: [NavIconComponent],

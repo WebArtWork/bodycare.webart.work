@@ -1,4 +1,5 @@
 import {
+	ChangeDetectionStrategy,
 	Component,
 	DestroyRef,
 	computed,
@@ -21,6 +22,7 @@ import { SecurityModel } from './settings.interface';
 import { securitySchema } from './settings.schema';
 
 @Component({
+	changeDetection: ChangeDetectionStrategy.OnPush,
 	imports: [FormField, ButtonModule, PasswordModule, FieldErrorComponent, TranslateDirective],
 	templateUrl: './settings.component.html',
 	styleUrl: './settings.component.scss',

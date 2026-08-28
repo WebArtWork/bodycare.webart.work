@@ -1,4 +1,4 @@
-import { Component, computed, inject, signal, viewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, signal, viewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MessageService } from '@wawjs/ngx-prime/api';
 import { ButtonModule } from '@wawjs/ngx-prime/button';
@@ -18,6 +18,7 @@ interface EntityOption {
 }
 
 @Component({
+	changeDetection: ChangeDetectionStrategy.OnPush,
 	imports: [
 		FormsModule,
 		ButtonModule,

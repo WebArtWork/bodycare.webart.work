@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, input } from '@angular/core';
 import { Router } from '@angular/router';
 import { ClientRecord } from '../../../record/record.interface';
 import {
@@ -18,31 +18,35 @@ import { UserIconComponent } from '../../user/user-icon/user-icon.component';
 	imports: [CommonModule, UserIconComponent],
 	templateUrl: './record-view.component.html',
 	styleUrl: './record-view.component.scss',
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RecordViewComponent {
 	private readonly _router = inject(Router);
 
-	@Input() entity!: ClientRecord;
-	@Input() client?: User | null;
-	@Input() specialist?: Specialist | null;
-	@Input() venue?: Venue | null;
-	@Input() author?: User | null;
-	@Input() involvedUsers: User[] = [];
+	readonly entity = input.required<ClientRecord>();
+	readonly client = input<User | null>(null);
+	readonly specialist = input<Specialist | null>(null);
+	readonly venue = input<Venue | null>(null);
+	readonly author = input<User | null>(null);
+	readonly involvedUsers = input<User[]>([]);
 
 	readonly typeLabels = RECORD_TYPE_LABELS;
 	readonly statusLabels = RECORD_STATUS_LABELS;
 	readonly visibilityLabels = RECORD_VISIBILITY_LABELS;
 
 	viewClient(): void {
-		if (this.client) this._router.navigate(['/client', this.client._id]);
+		const client = this.client();
+		if (client) this._router.navigate(['/client', client._id]);
 	}
 
 	viewSpecialist(): void {
-		if (this.specialist) this._router.navigate(['/specialist', this.specialist._id]);
+		const specialist = this.specialist();
+		if (specialist) this._router.navigate(['/specialist', specialist._id]);
 	}
 
 	viewVenue(): void {
-		if (this.venue) this._router.navigate(['/venue', this.venue._id]);
+		const venue = this.venue();
+		if (venue) this._router.navigate(['/venue', venue._id]);
 	}
 
 	viewUser(user: User): void {

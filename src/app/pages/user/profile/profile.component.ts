@@ -1,4 +1,5 @@
 import {
+	ChangeDetectionStrategy,
 	Component,
 	computed,
 	inject,
@@ -17,6 +18,7 @@ import { ProfileModel } from './profile.interface';
 import { profileSchema } from './profile.schema';
 
 @Component({
+	changeDetection: ChangeDetectionStrategy.OnPush,
 	imports: [
 		FormField,
 		ButtonModule,

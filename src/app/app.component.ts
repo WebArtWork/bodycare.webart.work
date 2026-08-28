@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { UserService } from '@wawjs/ngx-bos';
 import { MessageService } from '@wawjs/ngx-prime/api';
@@ -7,6 +7,7 @@ import { SessionBridgeService } from './auth/session-bridge.service';
 import { ThemeState } from './theme/theme-state';
 
 @Component({
+	changeDetection: ChangeDetectionStrategy.OnPush,
 	imports: [RouterOutlet, ToastModule],
 	selector: 'app-root',
 	templateUrl: './app.component.html',

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, computed, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, input } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '../../../user/user.interface';
 import { Specialist } from '../../../specialist/specialist.interface';
@@ -32,22 +32,23 @@ const _serviceById = new Map<string, Service>(services.map((l) => [l._id, l]));
 	],
 	templateUrl: './user-view.component.html',
 	styleUrl: './user-view.component.scss',
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserViewComponent {
 	private readonly _router = inject(Router);
 
-	@Input() entity!: User;
+	readonly entity = input.required<User>();
 
 	readonly specialist = computed<Specialist | null>(
-		() => (this.entity.specialistId ? (_specialistById.get(this.entity.specialistId) ?? null) : null),
+		() => (this.entity().specialistId ? (_specialistById.get(this.entity().specialistId!) ?? null) : null),
 	);
 
 	readonly venue = computed<Venue | null>(
-		() => (this.entity.venueId ? (_venueById.get(this.entity.venueId) ?? null) : null),
+		() => (this.entity().venueId ? (_venueById.get(this.entity().venueId!) ?? null) : null),
 	);
 
 	readonly passportRecords = computed<ClientRecord[]>(() =>
-		this.entity.recordIds.map((id) => _recordById.get(id)).filter((r): r is ClientRecord => !!r),
+		this.entity().recordIds.map((id) => _recordById.get(id)).filter((r): r is ClientRecord => !!r),
 	);
 
 	readonly relatedServices = computed<Service[]>(() => {

@@ -1,4 +1,5 @@
 import {
+	ChangeDetectionStrategy,
 	Component,
 	computed,
 	inject,
@@ -25,6 +26,7 @@ const BURGER_ICONS: Record<BurgerState, string> = {
 };
 
 @Component({
+	changeDetection: ChangeDetectionStrategy.OnPush,
 	selector: 'layout-topbar',
 	templateUrl: './topbar.component.html',
 	imports: [RouterLink, NavIconComponent],

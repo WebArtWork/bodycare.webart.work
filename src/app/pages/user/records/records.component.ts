@@ -1,4 +1,4 @@
-import { Component, computed, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs';
@@ -18,6 +18,7 @@ const _specialistById = new Map<string, Specialist>(specialists.map((s) => [s._i
 const _venueById = new Map<string, Venue>(venues.map((v) => [v._id, v]));
 
 @Component({
+	changeDetection: ChangeDetectionStrategy.OnPush,
 	imports: [RecordViewComponent, CardModule],
 	templateUrl: './records.component.html',
 	styleUrl: './records.component.scss',

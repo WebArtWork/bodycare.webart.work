@@ -1,4 +1,4 @@
-import { Component, computed, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs';
@@ -8,6 +8,7 @@ import { User } from '../../../user/user.interface';
 import { users } from '../../../user/user.data';
 
 @Component({
+	changeDetection: ChangeDetectionStrategy.OnPush,
 	imports: [UserViewComponent, CardModule],
 	templateUrl: './client.component.html',
 	styleUrl: './client.component.scss',

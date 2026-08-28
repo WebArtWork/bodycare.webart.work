@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { Field } from '@angular/forms/signals';
 import { TranslateDirective } from '@wawjs/ngx-translate';
 
@@ -10,6 +10,7 @@ import { TranslateDirective } from '@wawjs/ngx-translate';
  * pairs its native input with `<app-field-error [field]="form.someField" />`.
  */
 @Component({
+	changeDetection: ChangeDetectionStrategy.OnPush,
 	selector: 'app-field-error',
 	template: `
 		@if (message(); as msg) {

@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { filter, map, startWith } from 'rxjs';
@@ -9,6 +9,7 @@ import { SidebarService } from '../sidebar/sidebar.service';
 import { TopbarComponent } from '../topbar/topbar.component';
 
 @Component({
+	changeDetection: ChangeDetectionStrategy.OnPush,
 	templateUrl: './user.component.html',
 	styleUrl: './user.component.scss',
 	imports: [RouterOutlet, TopbarComponent, SidebarComponent, MobileNavComponent, FooterComponent],

@@ -1,40 +1,40 @@
 <article class="card">
-	<h2 class="card__title">{{ entity.title }}</h2>
+	<h2 class="card__title">{{ entity().title }}</h2>
 
 	<div class="card__meta">
-		<span class="card__badge">{{ categoryLabels[entity.category] }}</span>
-		<span class="card__badge">{{ statusLabels[entity.status] }}</span>
-		@if (entity.sourceVerified) {
+		<span class="card__badge">{{ categoryLabels[entity().category] }}</span>
+		<span class="card__badge">{{ statusLabels[entity().status] }}</span>
+		@if (entity().sourceVerified) {
 			<span class="card__badge">Перевірено</span>
 		}
 	</div>
 
-	@if (specialist || venue) {
+	@if (specialist() || venue()) {
 		<div class="card__meta">
-			@if (specialist) {
-				<button type="button" class="card__relation" (click)="viewSpecialist()"><app-specialist-icon [entity]="specialist" /></button>
+			@if (specialist(); as sp) {
+				<button type="button" class="card__relation" (click)="viewSpecialist()"><app-specialist-icon [entity]="sp" /></button>
 			}
-			@if (venue) {
-				<button type="button" class="card__relation" (click)="viewVenue()"><app-venue-icon [entity]="venue" /></button>
+			@if (venue(); as v) {
+				<button type="button" class="card__relation" (click)="viewVenue()"><app-venue-icon [entity]="v" /></button>
 			}
 		</div>
 	}
 
-	@if (entity.photos.length) {
+	@if (entity().photos.length) {
 		<div class="card__photos">
-			@for (photo of entity.photos; track photo) {
+			@for (photo of entity().photos; track photo) {
 				<img class="card__photo" [src]="photo" alt="" />
 			}
 		</div>
 	}
 
-	<p>{{ entity.description }}</p>
+	<p>{{ entity().description }}</p>
 
-		<div class="card__row"><dt>Ціна</dt><dd>{{ entity.price }} {{ entity.currency }}</dd></div>
-		<div class="card__row"><dt>Тривалість</dt><dd>{{ entity.durationMinutes }} хв</dd></div>
-		<div class="card__row"><dt>Тип бронювання</dt><dd>{{ entity.bookingType }}</dd></div>
-		<div class="card__row"><dt>Опубліковано</dt><dd>{{ entity.publicationDate }}</dd></div>
-		@if (entity.expirationDate) {
-			<div class="card__row"><dt>Термін дії до</dt><dd>{{ entity.expirationDate }}</dd></div>
+		<div class="card__row"><dt>Ціна</dt><dd>{{ entity().price }} {{ entity().currency }}</dd></div>
+		<div class="card__row"><dt>Тривалість</dt><dd>{{ entity().durationMinutes }} хв</dd></div>
+		<div class="card__row"><dt>Тип бронювання</dt><dd>{{ entity().bookingType }}</dd></div>
+		<div class="card__row"><dt>Опубліковано</dt><dd>{{ entity().publicationDate }}</dd></div>
+		@if (entity().expirationDate) {
+			<div class="card__row"><dt>Термін дії до</dt><dd>{{ entity().expirationDate }}</dd></div>
 		}
 </article>

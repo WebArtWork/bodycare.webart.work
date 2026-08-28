@@ -1,4 +1,5 @@
 import {
+	ChangeDetectionStrategy,
 	Component,
 	computed,
 	inject,
@@ -11,6 +12,7 @@ import { NavIconComponent } from '../../shared/nav-icon/nav-icon.component';
 import { SidebarService } from './sidebar.service';
 
 @Component({
+	changeDetection: ChangeDetectionStrategy.OnPush,
 	selector: 'layout-sidebar',
 	templateUrl: './sidebar.component.html',
 	styleUrl: './sidebar.component.scss',

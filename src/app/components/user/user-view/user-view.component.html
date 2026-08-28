@@ -1,22 +1,22 @@
 <article class="card">
-	@if (entity.photo) {
-		<img class="card__photo" style="width:96px;height:96px;border-radius:50%" [src]="entity.photo" alt="" />
+	@if (entity().photo) {
+		<img class="card__photo" style="width:96px;height:96px;border-radius:50%" [src]="entity().photo" alt="" />
 	}
 
-	<h2 class="card__title">{{ entity.name }}</h2>
+	<h2 class="card__title">{{ entity().name }}</h2>
 
 	<div class="card__meta">
-		@for (role of entity.roles; track role) {
+		@for (role of entity().roles; track role) {
 			<span class="card__badge">{{ role }}</span>
 		}
 	</div>
 
-	<p>{{ entity.bio }}</p>
+	<p>{{ entity().bio }}</p>
 
-		<div class="card__row"><dt>Розташування</dt><dd>{{ entity.city }}, {{ entity.country }}</dd></div>
-		<div class="card__row"><dt>Ел. пошта</dt><dd>{{ entity.contact.email }}</dd></div>
-		<div class="card__row"><dt>Телефон</dt><dd>{{ entity.contact.phone }}</dd></div>
-		<div class="card__row"><dt>Досвід</dt><dd>{{ entity.experienceYears }} років</dd></div>
+		<div class="card__row"><dt>Розташування</dt><dd>{{ entity().city }}, {{ entity().country }}</dd></div>
+		<div class="card__row"><dt>Ел. пошта</dt><dd>{{ entity().contact.email }}</dd></div>
+		<div class="card__row"><dt>Телефон</dt><dd>{{ entity().contact.phone }}</dd></div>
+		<div class="card__row"><dt>Досвід</dt><dd>{{ entity().experienceYears }} років</dd></div>
 		@if (specialist(); as sp) {
 			<div class="card__row">
 				<dt>Спеціаліст</dt>
@@ -37,13 +37,13 @@
 				</dd>
 			</div>
 		}
-		@if (entity.requestIds.length) {
-			<div class="card__row"><dt>Запити</dt><dd>{{ entity.requestIds.length }}</dd></div>
+		@if (entity().requestIds.length) {
+			<div class="card__row"><dt>Запити</dt><dd>{{ entity().requestIds.length }}</dd></div>
 		}
 
-	@if (entity.interests.length) {
+	@if (entity().interests.length) {
 		<div class="card__meta">
-			@for (i of entity.interests; track i) {
+			@for (i of entity().interests; track i) {
 				<span class="card__badge">{{ i }}</span>
 			}
 		</div>

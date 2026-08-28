@@ -1,4 +1,4 @@
-import { Component, computed, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs';
@@ -11,6 +11,7 @@ import { Specialist } from '../../../specialist/specialist.interface';
 import { specialists } from '../../../specialist/specialist.data';
 
 @Component({
+	changeDetection: ChangeDetectionStrategy.OnPush,
 	imports: [SpecialistViewComponent, CardModule, ButtonModule],
 	templateUrl: './specialist.component.html',
 	styleUrl: './specialist.component.scss',

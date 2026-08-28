@@ -1,4 +1,4 @@
-import { Component, computed, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { ButtonModule } from '@wawjs/ngx-prime/button';
@@ -16,6 +16,7 @@ interface SelectOption<T> {
 }
 
 @Component({
+	changeDetection: ChangeDetectionStrategy.OnPush,
 	imports: [
 		ServiceShortComponent,
 		FormsModule,

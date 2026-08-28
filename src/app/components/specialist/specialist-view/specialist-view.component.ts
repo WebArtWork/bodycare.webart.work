@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, computed, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, input } from '@angular/core';
 import { Router } from '@angular/router';
 import { Specialist } from '../../../specialist/specialist.interface';
 import { Venue } from '../../../venue/venue.interface';
@@ -18,18 +18,19 @@ const _serviceById = new Map<string, Service>(services.map((l) => [l._id, l]));
 	imports: [CommonModule, VenueIconComponent, ServiceShortComponent],
 	templateUrl: './specialist-view.component.html',
 	styleUrl: './specialist-view.component.scss',
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SpecialistViewComponent {
 	private readonly _router = inject(Router);
 
-	@Input() entity!: Specialist;
+	readonly entity = input.required<Specialist>();
 
 	readonly venue = computed<Venue | null>(
-		() => (this.entity.venueId ? (_venueById.get(this.entity.venueId) ?? null) : null),
+		() => (this.entity().venueId ? (_venueById.get(this.entity().venueId!) ?? null) : null),
 	);
 
 	readonly relatedServices = computed<Service[]>(() =>
-		this.entity.serviceIds.map((id) => _serviceById.get(id)).filter((l): l is Service => !!l),
+		this.entity().serviceIds.map((id) => _serviceById.get(id)).filter((l): l is Service => !!l),
 	);
 
 	viewVenue(): void {

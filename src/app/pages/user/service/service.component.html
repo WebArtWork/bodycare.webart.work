@@ -4,8 +4,8 @@
 	@let rel = relations();
 	<app-service-view
 		[entity]="item"
-		[venue]="rel?.venue"
-		[specialist]="rel?.specialist"
+		[venue]="rel?.venue ?? null"
+		[specialist]="rel?.specialist ?? null"
 	/>
 	} @else {
 	<p-card class="service__not-found">

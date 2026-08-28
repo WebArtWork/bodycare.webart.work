@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ButtonModule } from '@wawjs/ngx-prime/button';
 import { CardModule } from '@wawjs/ngx-prime/card';
@@ -12,6 +12,7 @@ interface HomeFeature {
 }
 
 @Component({
+	changeDetection: ChangeDetectionStrategy.OnPush,
 	imports: [RouterLink, ButtonModule, CardModule, TranslateDirective],
 	templateUrl: './home.component.html',
 	styleUrl: './home.component.scss',

@@ -1,4 +1,4 @@
-import { Component, computed, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CardModule } from '@wawjs/ngx-prime/card';
@@ -8,6 +8,7 @@ import { Venue } from '../../../venue/venue.interface';
 import { venues } from '../../../venue/venue.data';
 
 @Component({
+	changeDetection: ChangeDetectionStrategy.OnPush,
 	imports: [VenueShortComponent, FormsModule, CardModule, InputTextModule],
 	templateUrl: './venues.component.html',
 	styleUrl: './venues.component.scss',
