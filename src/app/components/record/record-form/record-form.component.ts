@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, inject, input } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ButtonModule } from '@wawjs/ngx-prime/button';
 import { InputNumberModule } from '@wawjs/ngx-prime/inputnumber';
@@ -30,36 +29,34 @@ import {
 	],
 	templateUrl: './record-form.component.html',
 	styleUrl: './record-form.component.scss',
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RecordFormComponent implements OnInit {
-	@Input() entity?: ClientRecord;
+	readonly entity = input<ClientRecord>();
 
-	readonly form: FormGroup;
+	private readonly _fb = inject(FormBuilder);
+
+	readonly form: FormGroup = this._fb.group({
+		recordType: ['note', Validators.required],
+		title: ['', Validators.required],
+		description: ['', Validators.required],
+		eventDate: ['', Validators.required],
+		cost: [null],
+		currency: [null],
+		quantity: [null],
+		units: [''],
+		status: ['planned', Validators.required],
+		bodyArea: [''],
+		visibility: ['private', Validators.required],
+	});
 	readonly recordTypeOptions = RECORD_TYPE_OPTIONS;
 	readonly statusOptions = RECORD_STATUS_OPTIONS;
 	readonly visibilityOptions = RECORD_VISIBILITY_OPTIONS;
 
-	constructor(private readonly fb: FormBuilder) {
-		this.form = this.fb.group({
-			recordType: ['note', Validators.required],
-			title: ['', Validators.required],
-			description: ['', Validators.required],
-			eventDate: ['', Validators.required],
-			specialistId: [null],
-			venueId: [null],
-			cost: [null],
-			currency: [null],
-			quantity: [null],
-			units: [''],
-			status: ['planned', Validators.required],
-			bodyArea: [''],
-			visibility: ['private', Validators.required],
-		});
-	}
-
 	ngOnInit(): void {
-		if (this.entity) {
-			this.form.patchValue(this.entity);
+		const entity = this.entity();
+		if (entity) {
+			this.form.patchValue(entity);
 		}
 	}
 }

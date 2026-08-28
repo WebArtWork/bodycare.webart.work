@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, signal } from '@angular/core';
 import { User } from '../../../user/user.interface';
 
 @Component({
@@ -9,13 +8,14 @@ import { User } from '../../../user/user.interface';
 	imports: [CommonModule],
 	templateUrl: './user-icon.component.html',
 	styleUrl: './user-icon.component.scss',
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserIconComponent {
-	@Input() entity!: User;
+	readonly entity = input.required<User>();
 
-	photoFailed = false;
+	readonly photoFailed = signal(false);
 
 	onPhotoError(): void {
-		this.photoFailed = true;
+		this.photoFailed.set(true);
 	}
 }

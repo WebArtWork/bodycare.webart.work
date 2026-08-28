@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, inject, input } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ButtonModule } from '@wawjs/ngx-prime/button';
 import { InputNumberModule } from '@wawjs/ngx-prime/inputnumber';
@@ -22,24 +21,24 @@ const ENTITY_TYPE_OPTIONS: { value: CommentEntityType; label: string }[] = [
 	imports: [CommonModule, ReactiveFormsModule, SelectModule, InputNumberModule, TextareaModule, ButtonModule, TranslateDirective],
 	templateUrl: './comment-form.component.html',
 	styleUrl: './comment-form.component.scss',
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CommentFormComponent {
-	@Input() entity?: EntityComment;
+export class CommentFormComponent implements OnInit {
+	readonly entity = input<EntityComment>();
 
-	readonly form: FormGroup;
+	private readonly _fb = inject(FormBuilder);
+
+	readonly form: FormGroup = this._fb.group({
+		entityType: ['service', Validators.required],
+		rating: [null, [Validators.min(1), Validators.max(5)]],
+		text: ['', [Validators.required, Validators.maxLength(2000)]],
+	});
 	readonly entityTypeOptions = ENTITY_TYPE_OPTIONS;
 
-	constructor(private readonly fb: FormBuilder) {
-		this.form = this.fb.group({
-			entityType: ['service', Validators.required],
-			rating: [null, [Validators.min(1), Validators.max(5)]],
-			text: ['', [Validators.required, Validators.maxLength(2000)]],
-		});
-	}
-
 	ngOnInit(): void {
-		if (this.entity) {
-			this.form.patchValue(this.entity);
+		const entity = this.entity();
+		if (entity) {
+			this.form.patchValue(entity);
 		}
 	}
 }

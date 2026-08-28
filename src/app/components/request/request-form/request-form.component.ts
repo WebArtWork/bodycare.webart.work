@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, inject, input } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ButtonModule } from '@wawjs/ngx-prime/button';
 import { InputNumberModule } from '@wawjs/ngx-prime/inputnumber';
@@ -37,36 +36,36 @@ const VISIBILITY_OPTIONS: { value: ServiceRequest['visibility']; label: string }
 	],
 	templateUrl: './request-form.component.html',
 	styleUrl: './request-form.component.scss',
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class RequestFormComponent {
-	@Input() entity?: ServiceRequest;
+export class RequestFormComponent implements OnInit {
+	readonly entity = input<ServiceRequest>();
 
-	readonly form: FormGroup;
+	private readonly _fb = inject(FormBuilder);
+
+	readonly form: FormGroup = this._fb.group({
+		transactionType: ['book-service', Validators.required],
+		country: ['', Validators.required],
+		region: ['', Validators.required],
+		city: ['', Validators.required],
+		minPrice: [0, [Validators.required, Validators.min(0)]],
+		maxPrice: [0, [Validators.required, Validators.min(0)]],
+		currency: ['USD', Validators.required],
+		preferredDurationMinutes: [0, Validators.min(0)],
+		sessionsRequirements: [0, Validators.min(0)],
+		experienceRequirements: [''],
+		specialtyPreferences: [''],
+		preferredDate: [''],
+		expirationDate: ['', Validators.required],
+		visibility: ['public', Validators.required],
+	});
 	readonly transactionTypeOptions = TRANSACTION_TYPE_OPTIONS;
 	readonly visibilityOptions = VISIBILITY_OPTIONS;
 
-	constructor(private readonly fb: FormBuilder) {
-		this.form = this.fb.group({
-			transactionType: ['book-service', Validators.required],
-			country: ['', Validators.required],
-			region: ['', Validators.required],
-			city: ['', Validators.required],
-			minPrice: [0, [Validators.required, Validators.min(0)]],
-			maxPrice: [0, [Validators.required, Validators.min(0)]],
-			currency: ['USD', Validators.required],
-			preferredDurationMinutes: [0, Validators.min(0)],
-			sessionsRequirements: [0, Validators.min(0)],
-			experienceRequirements: [''],
-			specialtyPreferences: [''],
-			preferredDate: [''],
-			expirationDate: ['', Validators.required],
-			visibility: ['public', Validators.required],
-		});
-	}
-
 	ngOnInit(): void {
-		if (this.entity) {
-			this.form.patchValue(this.entity);
+		const entity = this.entity();
+		if (entity) {
+			this.form.patchValue(entity);
 		}
 	}
 }

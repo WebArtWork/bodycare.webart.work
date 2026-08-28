@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core';
 import { Service } from '../../../service/service.interface';
 import { Venue } from '../../../venue/venue.interface';
 import { Specialist } from '../../../specialist/specialist.interface';
@@ -16,18 +16,17 @@ const DEFAULT_PHOTO = '/service-default.svg';
 	imports: [CommonModule, VenueIconComponent, SpecialistIconComponent],
 	templateUrl: './service-short.component.html',
 	styleUrl: './service-short.component.scss',
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ServiceShortComponent {
-	@Input() entity!: Service;
-	@Input() venue?: Venue | null;
-	@Input() specialist?: Specialist | null;
+	readonly entity = input.required<Service>();
+	readonly venue = input<Venue | null>(null);
+	readonly specialist = input<Specialist | null>(null);
 
 	/** Emitted instead of navigating directly, so the host page can stop the card's own click. */
-	@Output() relationClick = new EventEmitter<{ type: ServiceRelationType; id: string }>();
+	readonly relationClick = output<{ type: ServiceRelationType; id: string }>();
 
-	get photo(): string {
-		return this.entity.photos[0] || DEFAULT_PHOTO;
-	}
+	readonly photo = computed(() => this.entity().photos[0] || DEFAULT_PHOTO);
 
 	onPhotoError(event: Event): void {
 		(event.target as HTMLImageElement).src = DEFAULT_PHOTO;

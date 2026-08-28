@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { Service } from '../../../service/service.interface';
 
 @Component({
@@ -9,7 +8,8 @@ import { Service } from '../../../service/service.interface';
 	imports: [CommonModule],
 	templateUrl: './service-icon.component.html',
 	styleUrl: './service-icon.component.scss',
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ServiceIconComponent {
-	@Input() entity!: Service;
+	readonly entity = input.required<Service>();
 }

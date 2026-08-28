@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, inject, input } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ButtonModule } from '@wawjs/ngx-prime/button';
 import { InputNumberModule } from '@wawjs/ngx-prime/inputnumber';
@@ -23,28 +22,28 @@ import { Specialist } from '../../../specialist/specialist.interface';
 	],
 	templateUrl: './specialist-form.component.html',
 	styleUrl: './specialist-form.component.scss',
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SpecialistFormComponent {
-	@Input() entity?: Specialist;
+export class SpecialistFormComponent implements OnInit {
+	readonly entity = input<Specialist>();
 
-	readonly form: FormGroup;
+	private readonly _fb = inject(FormBuilder);
 
-	constructor(private readonly fb: FormBuilder) {
-		this.form = this.fb.group({
-			displayName: ['', Validators.required],
-			photo: [''],
-			bio: [''],
-			country: ['', Validators.required],
-			city: ['', Validators.required],
-			yearsExperience: [0, [Validators.min(0), Validators.max(80)]],
-			contactPhone: ['', Validators.pattern(/^[+0-9() -]{6,}$/)],
-			contactEmail: ['', [Validators.required, Validators.email]],
-		});
-	}
+	readonly form: FormGroup = this._fb.group({
+		displayName: ['', Validators.required],
+		photo: [''],
+		bio: [''],
+		country: ['', Validators.required],
+		city: ['', Validators.required],
+		yearsExperience: [0, [Validators.min(0), Validators.max(80)]],
+		contactPhone: ['', Validators.pattern(/^[+0-9() -]{6,}$/)],
+		contactEmail: ['', [Validators.required, Validators.email]],
+	});
 
 	ngOnInit(): void {
-		if (this.entity) {
-			this.form.patchValue(this.entity);
+		const entity = this.entity();
+		if (entity) {
+			this.form.patchValue(entity);
 		}
 	}
 }

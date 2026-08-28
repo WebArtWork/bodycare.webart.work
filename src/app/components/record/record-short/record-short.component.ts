@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { ClientRecord } from '../../../record/record.interface';
 
 @Component({
@@ -9,7 +8,8 @@ import { ClientRecord } from '../../../record/record.interface';
 	imports: [CommonModule],
 	templateUrl: './record-short.component.html',
 	styleUrl: './record-short.component.scss',
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RecordShortComponent {
-	@Input() entity!: ClientRecord;
+	readonly entity = input.required<ClientRecord>();
 }

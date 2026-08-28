@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, inject, input } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ButtonModule } from '@wawjs/ngx-prime/button';
 import { InputNumberModule } from '@wawjs/ngx-prime/inputnumber';
@@ -23,28 +22,28 @@ import { User } from '../../../user/user.interface';
 	],
 	templateUrl: './user-form.component.html',
 	styleUrl: './user-form.component.scss',
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class UserFormComponent {
-	@Input() entity?: User;
+export class UserFormComponent implements OnInit {
+	readonly entity = input<User>();
 
-	readonly form: FormGroup;
+	private readonly _fb = inject(FormBuilder);
 
-	constructor(private readonly fb: FormBuilder) {
-		this.form = this.fb.group({
-			name: ['', Validators.required],
-			photo: [''],
-			bio: [''],
-			country: ['', Validators.required],
-			city: ['', Validators.required],
-			experienceYears: [0, Validators.min(0)],
-			email: ['', [Validators.required, Validators.email]],
-			phone: ['', Validators.pattern(/^[+0-9() -]{6,}$/)],
-		});
-	}
+	readonly form: FormGroup = this._fb.group({
+		name: ['', Validators.required],
+		photo: [''],
+		bio: [''],
+		country: ['', Validators.required],
+		city: ['', Validators.required],
+		experienceYears: [0, Validators.min(0)],
+		email: ['', [Validators.required, Validators.email]],
+		phone: ['', Validators.pattern(/^[+0-9() -]{6,}$/)],
+	});
 
 	ngOnInit(): void {
-		if (this.entity) {
-			this.form.patchValue({ ...this.entity, ...this.entity.contact });
+		const entity = this.entity();
+		if (entity) {
+			this.form.patchValue({ ...entity, ...entity.contact });
 		}
 	}
 }

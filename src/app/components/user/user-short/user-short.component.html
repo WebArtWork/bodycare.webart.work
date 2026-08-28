@@ -2,14 +2,14 @@
 	<img
 		class="short__thumb"
 		style="border-radius:50%"
-		[src]="photo"
-		[alt]="entity.name"
+		[src]="photo()"
+		[alt]="entity().name"
 		loading="lazy"
 		(error)="onPhotoError($event)"
 	/>
 
 	<div class="short__body">
-		<h3 class="short__title">{{ entity.name }}</h3>
-		<span class="short__meta">{{ entity.city }}, {{ entity.country }}</span>
+		<h3 class="short__title">{{ entity().name }}</h3>
+		<span class="short__meta">{{ entity().city }}, {{ entity().country }}</span>
 	</div>
 </article>

@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 import { Venue } from '../../../venue/venue.interface';
 
 const DEFAULT_PHOTO = '/default-venue.png';
@@ -11,13 +10,12 @@ const DEFAULT_PHOTO = '/default-venue.png';
 	imports: [CommonModule],
 	templateUrl: './venue-short.component.html',
 	styleUrl: './venue-short.component.scss',
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class VenueShortComponent {
-	@Input() entity!: Venue;
+	readonly entity = input.required<Venue>();
 
-	get photo(): string {
-		return this.entity.logo || DEFAULT_PHOTO;
-	}
+	readonly photo = computed(() => this.entity().logo || DEFAULT_PHOTO);
 
 	onPhotoError(event: Event): void {
 		(event.target as HTMLImageElement).src = DEFAULT_PHOTO;

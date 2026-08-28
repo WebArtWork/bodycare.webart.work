@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, inject, input } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ButtonModule } from '@wawjs/ngx-prime/button';
 import { InputNumberModule } from '@wawjs/ngx-prime/inputnumber';
@@ -15,30 +14,30 @@ import { Venue } from '../../../venue/venue.interface';
 	imports: [CommonModule, ReactiveFormsModule, ButtonModule, InputNumberModule, InputTextModule, TextareaModule, TranslateDirective],
 	templateUrl: './venue-form.component.html',
 	styleUrl: './venue-form.component.scss',
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class VenueFormComponent {
-	@Input() entity?: Venue;
+export class VenueFormComponent implements OnInit {
+	readonly entity = input<Venue>();
 
-	readonly form: FormGroup;
+	private readonly _fb = inject(FormBuilder);
 
-	constructor(private readonly fb: FormBuilder) {
-		this.form = this.fb.group({
-			name: ['', Validators.required],
-			description: ['', Validators.required],
-			logo: [''],
-			country: ['', Validators.required],
-			city: ['', Validators.required],
-			foundedYear: [null, [Validators.min(1800), Validators.max(2100)]],
-			phone: ['', Validators.pattern(/^[+0-9() -]{6,}$/)],
-			email: ['', [Validators.required, Validators.email]],
-			website: [''],
-			address: [''],
-		});
-	}
+	readonly form: FormGroup = this._fb.group({
+		name: ['', Validators.required],
+		description: ['', Validators.required],
+		logo: [''],
+		country: ['', Validators.required],
+		city: ['', Validators.required],
+		foundedYear: [null, [Validators.min(1800), Validators.max(2100)]],
+		phone: ['', Validators.pattern(/^[+0-9() -]{6,}$/)],
+		email: ['', [Validators.required, Validators.email]],
+		website: [''],
+		address: [''],
+	});
 
 	ngOnInit(): void {
-		if (this.entity) {
-			this.form.patchValue({ ...this.entity, ...this.entity.contact });
+		const entity = this.entity();
+		if (entity) {
+			this.form.patchValue({ ...entity, ...entity.contact });
 		}
 	}
 }

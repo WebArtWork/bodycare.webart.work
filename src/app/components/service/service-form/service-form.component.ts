@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, inject, input } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ButtonModule } from '@wawjs/ngx-prime/button';
 import { InputNumberModule } from '@wawjs/ngx-prime/inputnumber';
@@ -47,31 +46,31 @@ const BOOKING_TYPE_OPTIONS: { value: BookingType; label: string }[] = [
 	],
 	templateUrl: './service-form.component.html',
 	styleUrl: './service-form.component.scss',
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ServiceFormComponent implements OnInit {
-	@Input() entity?: Service;
+	readonly entity = input<Service>();
 
-	readonly form: FormGroup;
+	private readonly _fb = inject(FormBuilder);
+
+	readonly form: FormGroup = this._fb.group({
+		category: ['hair', Validators.required],
+		bookingType: ['single', Validators.required],
+		title: ['', Validators.required],
+		description: ['', Validators.required],
+		durationMinutes: [30, [Validators.required, Validators.min(5)]],
+		price: [0, [Validators.required, Validators.min(0)]],
+		currency: ['UAH', Validators.required],
+		status: ['draft', Validators.required],
+	});
 	readonly categoryOptions = SERVICE_CATEGORY_OPTIONS;
 	readonly statusOptions = SERVICE_STATUS_OPTIONS;
 	readonly bookingTypeOptions = BOOKING_TYPE_OPTIONS;
 
-	constructor(private readonly fb: FormBuilder) {
-		this.form = this.fb.group({
-			category: ['hair', Validators.required],
-			bookingType: ['single', Validators.required],
-			title: ['', Validators.required],
-			description: ['', Validators.required],
-			durationMinutes: [30, [Validators.required, Validators.min(5)]],
-			price: [0, [Validators.required, Validators.min(0)]],
-			currency: ['UAH', Validators.required],
-			status: ['draft', Validators.required],
-		});
-	}
-
 	ngOnInit(): void {
-		if (this.entity) {
-			this.form.patchValue(this.entity);
+		const entity = this.entity();
+		if (entity) {
+			this.form.patchValue(entity);
 		}
 	}
 }

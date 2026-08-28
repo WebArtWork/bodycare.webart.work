@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { EntityComment } from '../../../comment/comment.interface';
 
 @Component({
@@ -9,7 +8,8 @@ import { EntityComment } from '../../../comment/comment.interface';
 	imports: [CommonModule],
 	templateUrl: './comment-short.component.html',
 	styleUrl: './comment-short.component.scss',
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CommentShortComponent {
-	@Input() entity!: EntityComment;
+	readonly entity = input.required<EntityComment>();
 }

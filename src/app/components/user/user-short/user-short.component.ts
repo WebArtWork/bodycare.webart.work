@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 import { User } from '../../../user/user.interface';
 
 const DEFAULT_PHOTO = '/default.png';
@@ -11,13 +10,12 @@ const DEFAULT_PHOTO = '/default.png';
 	imports: [CommonModule],
 	templateUrl: './user-short.component.html',
 	styleUrl: './user-short.component.scss',
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserShortComponent {
-	@Input() entity!: User;
+	readonly entity = input.required<User>();
 
-	get photo(): string {
-		return this.entity.photo || DEFAULT_PHOTO;
-	}
+	readonly photo = computed(() => this.entity().photo || DEFAULT_PHOTO);
 
 	onPhotoError(event: Event): void {
 		(event.target as HTMLImageElement).src = DEFAULT_PHOTO;

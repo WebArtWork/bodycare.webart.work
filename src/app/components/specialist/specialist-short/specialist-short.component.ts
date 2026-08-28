@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 import { Specialist } from '../../../specialist/specialist.interface';
 
 const DEFAULT_PHOTO = '/default.png';
@@ -11,13 +10,12 @@ const DEFAULT_PHOTO = '/default.png';
 	imports: [CommonModule],
 	templateUrl: './specialist-short.component.html',
 	styleUrl: './specialist-short.component.scss',
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SpecialistShortComponent {
-	@Input() entity!: Specialist;
+	readonly entity = input.required<Specialist>();
 
-	get photo(): string {
-		return this.entity.photo || DEFAULT_PHOTO;
-	}
+	readonly photo = computed(() => this.entity().photo || DEFAULT_PHOTO);
 
 	onPhotoError(event: Event): void {
 		(event.target as HTMLImageElement).src = DEFAULT_PHOTO;
