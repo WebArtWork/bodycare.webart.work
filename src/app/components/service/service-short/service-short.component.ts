@@ -8,6 +8,8 @@ import { SpecialistIconComponent } from '../../specialist/specialist-icon/specia
 
 export type ServiceRelationType = 'specialist' | 'venue';
 
+const DEFAULT_PHOTO = '/service-default.svg';
+
 @Component({
 	selector: 'app-service-short',
 	standalone: true,
@@ -22,6 +24,14 @@ export class ServiceShortComponent {
 
 	/** Emitted instead of navigating directly, so the host page can stop the card's own click. */
 	@Output() relationClick = new EventEmitter<{ type: ServiceRelationType; id: string }>();
+
+	get photo(): string {
+		return this.entity.photos[0] || DEFAULT_PHOTO;
+	}
+
+	onPhotoError(event: Event): void {
+		(event.target as HTMLImageElement).src = DEFAULT_PHOTO;
+	}
 
 	onRelationClick(event: Event, type: ServiceRelationType, id: string): void {
 		event.stopPropagation();

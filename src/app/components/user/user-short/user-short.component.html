@@ -1,7 +1,12 @@
 <article class="short">
-	@if (entity.photo) {
-		<img class="short__thumb" style="border-radius:50%" [src]="entity.photo" alt="" />
-	}
+	<img
+		class="short__thumb"
+		style="border-radius:50%"
+		[src]="photo"
+		[alt]="entity.name"
+		loading="lazy"
+		(error)="onPhotoError($event)"
+	/>
 
 	<div class="short__body">
 		<h3 class="short__title">{{ entity.name }}</h3>

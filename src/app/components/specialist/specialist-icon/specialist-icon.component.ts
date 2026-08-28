@@ -12,4 +12,10 @@ import { Specialist } from '../../../specialist/specialist.interface';
 })
 export class SpecialistIconComponent {
 	@Input() entity!: Specialist;
+
+	photoFailed = false;
+
+	onPhotoError(): void {
+		this.photoFailed = true;
+	}
 }

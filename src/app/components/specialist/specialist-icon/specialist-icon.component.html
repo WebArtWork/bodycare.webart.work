@@ -1,6 +1,6 @@
 <span class="icon">
-	@if (entity.photo) {
-		<img class="icon__avatar" [src]="entity.photo" alt="" />
+	@if (entity.photo && !photoFailed) {
+		<img class="icon__avatar" [src]="entity.photo" alt="" (error)="onPhotoError()" />
 	} @else {
 		<span class="icon__glyph"><i class="pi pi-user"></i></span>
 	}

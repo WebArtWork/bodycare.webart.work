@@ -12,4 +12,10 @@ import { User } from '../../../user/user.interface';
 })
 export class UserIconComponent {
 	@Input() entity!: User;
+
+	photoFailed = false;
+
+	onPhotoError(): void {
+		this.photoFailed = true;
+	}
 }
