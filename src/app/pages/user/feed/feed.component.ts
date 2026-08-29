@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { ButtonModule } from '@wawjs/ngx-prime/button';
+import { TranslateDirective } from '@wawjs/ngx-translate';
 import { VenueIconComponent } from '../../../components/venue/venue-icon/venue-icon.component';
 import { SpecialistIconComponent } from '../../../components/specialist/specialist-icon/specialist-icon.component';
 import { Service } from '../../../service/service.interface';
@@ -15,7 +16,7 @@ const DEFAULT_PHOTO = '/service-default.svg';
 
 @Component({
 	changeDetection: ChangeDetectionStrategy.OnPush,
-	imports: [ButtonModule, SpecialistIconComponent, VenueIconComponent],
+	imports: [ButtonModule, SpecialistIconComponent, VenueIconComponent, TranslateDirective],
 	templateUrl: './feed.component.html',
 	styleUrl: './feed.component.scss',
 })

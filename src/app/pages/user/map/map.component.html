@@ -9,14 +9,14 @@
 			/>
 
 			@if (!markers().length) {
-			<p class="map-page__empty">Немає закладів із координатами.</p>
+			<p class="map-page__empty" translate>Немає закладів із координатами.</p>
 			}
 		</div>
 
 		@if (selected(); as venue) {
 		<p-card class="map-page__panel">
 			<div class="map-page__panel-header">
-				<span class="map-page__panel-title">Обраний заклад</span>
+				<span class="map-page__panel-title" translate>Обраний заклад</span>
 				<p-button
 					icon="pi pi-times"
 					[text]="true"

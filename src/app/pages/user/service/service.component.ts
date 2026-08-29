@@ -3,6 +3,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs';
 import { CardModule } from '@wawjs/ngx-prime/card';
+import { TranslateDirective } from '@wawjs/ngx-translate';
 import { ServiceViewComponent } from '../../../components/service/service-view/service-view.component';
 import { Service } from '../../../service/service.interface';
 import { services } from '../../../service/service.data';
@@ -10,7 +11,7 @@ import { ServiceRelations, relationsForService } from '../../../service/service-
 
 @Component({
 	changeDetection: ChangeDetectionStrategy.OnPush,
-	imports: [ServiceViewComponent, CardModule],
+	imports: [ServiceViewComponent, CardModule, TranslateDirective],
 	templateUrl: './service.component.html',
 	styleUrl: './service.component.scss',
 })

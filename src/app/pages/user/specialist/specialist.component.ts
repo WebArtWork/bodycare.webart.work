@@ -5,14 +5,14 @@ import { map } from 'rxjs';
 import { MessageService } from '@wawjs/ngx-prime/api';
 import { ButtonModule } from '@wawjs/ngx-prime/button';
 import { CardModule } from '@wawjs/ngx-prime/card';
-import { TranslateService } from '@wawjs/ngx-translate';
+import { TranslateDirective, TranslateService } from '@wawjs/ngx-translate';
 import { SpecialistViewComponent } from '../../../components/specialist/specialist-view/specialist-view.component';
 import { Specialist } from '../../../specialist/specialist.interface';
 import { specialists } from '../../../specialist/specialist.data';
 
 @Component({
 	changeDetection: ChangeDetectionStrategy.OnPush,
-	imports: [SpecialistViewComponent, CardModule, ButtonModule],
+	imports: [SpecialistViewComponent, CardModule, ButtonModule, TranslateDirective],
 	templateUrl: './specialist.component.html',
 	styleUrl: './specialist.component.scss',
 })

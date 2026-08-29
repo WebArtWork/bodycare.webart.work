@@ -3,13 +3,14 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CardModule } from '@wawjs/ngx-prime/card';
 import { InputTextModule } from '@wawjs/ngx-prime/inputtext';
+import { TranslateDirective } from '@wawjs/ngx-translate';
 import { VenueShortComponent } from '../../../components/venue/venue-short/venue-short.component';
 import { Venue } from '../../../venue/venue.interface';
 import { venues } from '../../../venue/venue.data';
 
 @Component({
 	changeDetection: ChangeDetectionStrategy.OnPush,
-	imports: [VenueShortComponent, FormsModule, CardModule, InputTextModule],
+	imports: [VenueShortComponent, FormsModule, CardModule, InputTextModule, TranslateDirective],
 	templateUrl: './venues.component.html',
 	styleUrl: './venues.component.scss',
 })

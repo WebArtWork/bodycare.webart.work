@@ -3,6 +3,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs';
 import { CardModule } from '@wawjs/ngx-prime/card';
+import { TranslateDirective } from '@wawjs/ngx-translate';
 import { RecordViewComponent } from '../../../components/record/record-view/record-view.component';
 import { ClientRecord } from '../../../record/record.interface';
 import { records } from '../../../record/record.data';
@@ -19,7 +20,7 @@ const _venueById = new Map<string, Venue>(venues.map((v) => [v._id, v]));
 
 @Component({
 	changeDetection: ChangeDetectionStrategy.OnPush,
-	imports: [RecordViewComponent, CardModule],
+	imports: [RecordViewComponent, CardModule, TranslateDirective],
 	templateUrl: './records.component.html',
 	styleUrl: './records.component.scss',
 })

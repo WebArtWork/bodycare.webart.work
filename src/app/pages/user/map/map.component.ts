@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@a
 import { Router } from '@angular/router';
 import { ButtonModule } from '@wawjs/ngx-prime/button';
 import { CardModule } from '@wawjs/ngx-prime/card';
+import { TranslateDirective } from '@wawjs/ngx-translate';
 import { VenueShortComponent } from '../../../components/venue/venue-short/venue-short.component';
 import { LeafletMapComponent, LeafletMapMarker } from '../../../shared/leaflet-map/leaflet-map.component';
 import { Venue } from '../../../venue/venue.interface';
@@ -18,7 +19,7 @@ import { venues } from '../../../venue/venue.data';
  * needs no API key at all.
  */
 @Component({
-	imports: [ButtonModule, CardModule, VenueShortComponent, LeafletMapComponent],
+	imports: [ButtonModule, CardModule, VenueShortComponent, LeafletMapComponent, TranslateDirective],
 	templateUrl: './map.component.html',
 	styleUrl: './map.component.scss',
 	changeDetection: ChangeDetectionStrategy.OnPush,

@@ -1,5 +1,5 @@
 <div class="feed">
-	<h1 class="sr-only">Стрічка послуг</h1>
+	<h1 class="sr-only" translate>Стрічка послуг</h1>
 
 	@let items = feed();
 
@@ -65,7 +65,7 @@
 								styleClass="feed__action-btn"
 								(onClick)="act(item, 'favourite')"
 							/>
-							<span class="feed__action-label">Обране</span>
+							<span class="feed__action-label" translate>Обране</span>
 						</div>
 
 						<div class="feed__action">
@@ -77,7 +77,7 @@
 								styleClass="feed__action-btn"
 								(onClick)="act(item, 'ignore')"
 							/>
-							<span class="feed__action-label">Пропустити</span>
+							<span class="feed__action-label" translate>Пропустити</span>
 						</div>
 					</div>
 				</section>
@@ -85,7 +85,7 @@
 		</div>
 	} @else {
 		<div class="feed__empty">
-			<p>Оголошень для перегляду більше немає.</p>
+			<p translate>Оголошень для перегляду більше немає.</p>
 		</div>
 	}
 </div>

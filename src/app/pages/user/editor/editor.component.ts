@@ -4,6 +4,7 @@ import { MessageService } from '@wawjs/ngx-prime/api';
 import { ButtonModule } from '@wawjs/ngx-prime/button';
 import { CardModule } from '@wawjs/ngx-prime/card';
 import { SelectButtonModule } from '@wawjs/ngx-prime/selectbutton';
+import { TranslateDirective } from '@wawjs/ngx-translate';
 import { VenueFormComponent } from '../../../components/venue/venue-form/venue-form.component';
 import { SpecialistFormComponent } from '../../../components/specialist/specialist-form/specialist-form.component';
 import { ServiceFormComponent } from '../../../components/service/service-form/service-form.component';
@@ -29,6 +30,7 @@ interface EntityOption {
 		VenueFormComponent,
 		SpecialistFormComponent,
 		RequestFormComponent,
+		TranslateDirective,
 	],
 	templateUrl: './editor.component.html',
 	styleUrl: './editor.component.scss',

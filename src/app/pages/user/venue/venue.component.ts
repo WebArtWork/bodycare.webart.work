@@ -5,14 +5,14 @@ import { map } from 'rxjs';
 import { MessageService } from '@wawjs/ngx-prime/api';
 import { ButtonModule } from '@wawjs/ngx-prime/button';
 import { CardModule } from '@wawjs/ngx-prime/card';
-import { TranslateService } from '@wawjs/ngx-translate';
+import { TranslateDirective, TranslateService } from '@wawjs/ngx-translate';
 import { VenueViewComponent } from '../../../components/venue/venue-view/venue-view.component';
 import { Venue } from '../../../venue/venue.interface';
 import { venues } from '../../../venue/venue.data';
 
 @Component({
 	changeDetection: ChangeDetectionStrategy.OnPush,
-	imports: [VenueViewComponent, CardModule, ButtonModule],
+	imports: [VenueViewComponent, CardModule, ButtonModule, TranslateDirective],
 	templateUrl: './venue.component.html',
 	styleUrl: './venue.component.scss',
 })

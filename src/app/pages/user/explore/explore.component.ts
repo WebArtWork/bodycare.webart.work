@@ -5,6 +5,7 @@ import { ButtonModule } from '@wawjs/ngx-prime/button';
 import { InputTextModule } from '@wawjs/ngx-prime/inputtext';
 import { MultiSelectModule } from '@wawjs/ngx-prime/multiselect';
 import { SelectModule } from '@wawjs/ngx-prime/select';
+import { TranslateDirective } from '@wawjs/ngx-translate';
 import { ServiceRelationType, ServiceShortComponent } from '../../../components/service/service-short/service-short.component';
 import { Service, ServiceCategory, ServiceStatus } from '../../../service/service.interface';
 import { services } from '../../../service/service.data';
@@ -25,6 +26,7 @@ interface SelectOption<T> {
 		InputTextModule,
 		SelectModule,
 		MultiSelectModule,
+		TranslateDirective,
 	],
 	templateUrl: './explore.component.html',
 	styleUrl: './explore.component.scss',

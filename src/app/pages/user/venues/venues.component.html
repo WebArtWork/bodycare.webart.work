@@ -1,12 +1,12 @@
 <section class="venues">
 	<header class="venues__header">
 		<h2 class="venues__title">Заклади</h2>
-		<span class="venues__hint">Перегляньте всі заклади краси та фітнесу BodyCare</span>
+		<span class="venues__hint" translate>Перегляньте всі заклади краси та фітнесу BodyCare</span>
 	</header>
 
 	<p-card class="venues__filters">
 		<div class="venues__field">
-			<label for="venues-search">Пошук</label>
+			<label for="venues-search" translate>Пошук</label>
 			<input
 				id="venues-search"
 				pInputText
@@ -28,7 +28,7 @@
 				<app-venue-short [entity]="item" />
 			</div>
 			} @empty {
-			<p class="venues__empty">За заданим запитом закладів не знайдено.</p>
+			<p class="venues__empty" translate>За заданим запитом закладів не знайдено.</p>
 			}
 		</div>
 	</div>
