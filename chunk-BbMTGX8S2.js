@@ -1,0 +1,1 @@
+var t=[{path:``,loadComponent:()=>import(`./chunk-uM_nsKwE2.js`).then(o=>o.EditorComponent)}];export{t as routes};

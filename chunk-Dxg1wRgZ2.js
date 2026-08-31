@@ -1,0 +1,1 @@
+var t=[{path:``,loadComponent:()=>import(`./chunk-Du0wWeMq.js`).then(o=>o.ServiceComponent)}];export{t as routes};

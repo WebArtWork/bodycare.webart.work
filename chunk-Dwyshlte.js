@@ -1,0 +1,1 @@
+var t=[{path:``,loadComponent:()=>import(`./chunk-CeT1_Dxj.js`).then(o=>o.HomeComponent)}];export{t as routes};

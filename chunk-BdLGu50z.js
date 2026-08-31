@@ -1,0 +1,1 @@
+var t=[{path:``,loadComponent:()=>import(`./chunk-BBjOrEy02.js`).then(o=>o.SignComponent)}];export{t as routes};

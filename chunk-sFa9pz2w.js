@@ -1,0 +1,1 @@
+var t=[{path:``,loadComponent:()=>import(`./chunk-D7Cff9iK.js`).then(o=>o.SharePageComponent)}];export{t as routes};
