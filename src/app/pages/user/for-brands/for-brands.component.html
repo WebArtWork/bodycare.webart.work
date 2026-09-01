@@ -1,0 +1,48 @@
+@if (showForm()) {
+	<div class="landing-page">
+		<header class="landing-page__hero">
+			<h1>{{ translateService.translate('Стати брендом-партнером BodyCare')() }}</h1>
+		</header>
+
+		<app-lead-form kind="brand" [submitLabel]="translateService.translate('Надіслати заявку')()" />
+	</div>
+} @else {
+	<div class="landing-page">
+		<header class="landing-page__hero">
+			<h1>{{ translateService.translate('Постачайте косметику та професійні засоби через BodyCare')() }}</h1>
+			<p>{{ translateService.translate('Розмістіть свій бренд косметики, засобів для краси та професійних матеріалів там, де їх шукають спеціалісти й заклади.')() }}</p>
+			<button pButton type="button" (click)="showForm.set(true)">{{ translateService.translate('Стати брендом')() }}</button>
+		</header>
+
+		<section class="landing-page__section">
+			<h2>{{ translateService.translate('Як це працює')() }}</h2>
+			<ul class="landing-page__list">
+				<li>{{ translateService.translate('Ваш бренд з’являється в каталозі постачальників косметики та професійних засобів.')() }}</li>
+				<li>{{ translateService.translate('Спеціалісти й заклади бачать асортимент і додають ваші продукти до своїх послуг.')() }}</li>
+				<li>{{ translateService.translate('Можна домовлятися про співпрацю напряму зі спеціалістами та закладами.')() }}</li>
+				<li>{{ translateService.translate('Діліться посиланням на профіль бренду в один клік.')() }}</li>
+			</ul>
+		</section>
+
+		<section class="landing-page__section">
+			<h2>{{ translateService.translate('Чому BodyCare')() }}</h2>
+			<p>{{ translateService.translate('Ми об’єднуємо спеціалістів, заклади та бренди в одній екосистемі — ваша продукція потрапляє саме до тих, хто щодня працює з клієнтами краси та фітнесу.')() }}</p>
+		</section>
+
+		<section class="landing-page__section">
+			<h2>{{ translateService.translate('Питання')() }}</h2>
+			<p-accordion [multiple]="true">
+				@for (item of faq; track item.question) {
+					<p-accordionpanel [value]="item.question">
+						<p-accordionheader>{{ translateService.translate(item.question)() }}</p-accordionheader>
+						<p-accordioncontent>{{ translateService.translate(item.answer)() }}</p-accordioncontent>
+					</p-accordionpanel>
+				}
+			</p-accordion>
+		</section>
+
+		<footer class="landing-page__cta">
+			<button pButton type="button" (click)="showForm.set(true)">{{ translateService.translate('Стати брендом')() }}</button>
+		</footer>
+	</div>
+}

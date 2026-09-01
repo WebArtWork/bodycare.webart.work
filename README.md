@@ -34,6 +34,9 @@ out of scope for this phase).
   trainer", "want a gel manicure"), for matching against services.
 - **Comment** — reviews/feedback on a client, a service, a venue, or a
   specialist.
+- **Brand** — a supplier of cosmetics, beauty products, or professional
+  supplies that cooperates with specialists and venues already on the
+  platform.
 
 ## How people use it
 
