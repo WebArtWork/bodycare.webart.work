@@ -6,12 +6,13 @@ import { ButtonModule } from '@wawjs/ngx-prime/button';
 import { TranslateService } from '@wawjs/ngx-translate';
 import { ContactService } from '../../contact.service';
 
-export type LeadFormKind = 'user' | 'specialist' | 'venue';
+export type LeadFormKind = 'user' | 'specialist' | 'venue' | 'brand';
 
 const KIND_LABELS: Record<LeadFormKind, string> = {
 	user: 'Заявка клієнта',
 	specialist: 'Заявка спеціаліста',
 	venue: 'Заявка закладу',
+	brand: 'Заявка бренду',
 };
 
 /** Inline lead-capture form used on the /for-* landing pages. Sends to the BodyCare Telegram contact channel. */

@@ -127,6 +127,21 @@ export const routes: Routes = [
 					),
 			},
 			{
+				path: 'feedback',
+				canActivate: [MetaGuard],
+				data: {
+					meta: {
+						title: 'Відгук',
+						description: 'Поділіться відгуком або повідомте про помилку в BodyCare.',
+						index: false,
+					},
+				},
+				loadChildren: () =>
+					import('./pages/user/feedback/feedback.routes').then(
+						(m) => m.routes,
+					),
+			},
+			{
 				path: 'share',
 				canActivate: [MetaGuard],
 				data: {
@@ -180,6 +195,20 @@ export const routes: Routes = [
 				},
 				loadChildren: () =>
 					import('./pages/user/for-venues/for-venues.routes').then(
+						(m) => m.routes,
+					),
+			},
+			{
+				path: 'for-brands',
+				canActivate: [MetaGuard],
+				data: {
+					meta: {
+						title: 'Для брендів',
+						description: 'Постачайте косметику, засоби для краси та професійні матеріали разом з BodyCare.',
+					},
+				},
+				loadChildren: () =>
+					import('./pages/user/for-brands/for-brands.routes').then(
 						(m) => m.routes,
 					),
 			},
