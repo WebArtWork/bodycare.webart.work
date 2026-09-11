@@ -1,3 +1,30 @@
 .home__feature-card {
+	display: block;
 	height: 100%;
+	cursor: pointer;
+	transition:
+		transform 0.25s ease,
+		box-shadow 0.25s ease;
+
+	&:hover {
+		transform: translateY(-4px);
+		box-shadow: var(--shadow-md);
+	}
+}
+
+.home__audience-row {
+	text-decoration: none;
+}
+
+.home__audience-row:hover h3,
+.home__audience-row:hover i {
+	color: var(--c-primary);
+}
+
+.home__cta-panel {
+	background: linear-gradient(
+		135deg,
+		var(--c-primary) 0%,
+		var(--c-primary-hover) 100%
+	);
 }

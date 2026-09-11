@@ -32,10 +32,32 @@
 			class="inline-flex items-center max-md:hidden"
 		>
 			<app-nav-icon
+				routerLink="/specialists"
+				[name]="viewport() === 'mobile' ? '' : translateService.translate('Specialists')()"
+				[ariaLabel]="translateService.translate('Specialists')()"
+				icon="id-card"
+			/>
+		</li>
+
+		<li
+			class="inline-flex items-center max-md:hidden"
+		>
+			<app-nav-icon
 				routerLink="/venues"
 				[name]="viewport() === 'mobile' ? '' : translateService.translate('Venues')()"
 				[ariaLabel]="translateService.translate('Venues')()"
-				icon="briefcase"
+				icon="building"
+			/>
+		</li>
+
+		<li
+			class="inline-flex items-center max-md:hidden"
+		>
+			<app-nav-icon
+				routerLink="/services"
+				[name]="viewport() === 'mobile' ? '' : translateService.translate('Services')()"
+				[ariaLabel]="translateService.translate('Services')()"
+				icon="list"
 			/>
 		</li>
 

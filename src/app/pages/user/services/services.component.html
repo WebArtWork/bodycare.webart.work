@@ -1,0 +1,35 @@
+<section class="services">
+	<header class="services__header">
+		<h2 class="services__title">Послуги</h2>
+		<span class="services__hint" translate>Перегляньте всі послуги краси та фітнесу BodyCare</span>
+	</header>
+
+	<p-card class="services__filters">
+		<div class="services__field">
+			<label for="services-search" translate>Пошук</label>
+			<input
+				id="services-search"
+				pInputText
+				type="text"
+				placeholder="Назва або категорія"
+				[fluid]="true"
+				[ngModel]="searchTerm()"
+				(ngModelChange)="searchTerm.set($event)"
+			/>
+		</div>
+	</p-card>
+
+	<div class="services__results">
+		<span class="services__count">Знайдено послуг: {{ results().length }}</span>
+
+		<div class="services__grid">
+			@for (item of results(); track item._id) {
+			<div class="services__row" (click)="view(item)">
+				<app-service-short [entity]="item" />
+			</div>
+			} @empty {
+			<p class="services__empty" translate>За заданим запитом послуг не знайдено.</p>
+			}
+		</div>
+	</div>
+</section>

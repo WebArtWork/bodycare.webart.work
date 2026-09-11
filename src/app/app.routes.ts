@@ -243,6 +243,36 @@ export const routes: Routes = [
 					),
 			},
 			{
+				path: 'specialists',
+				canActivate: [MetaGuard],
+				data: {
+					meta: {
+						title: 'Спеціалісти',
+						description:
+							'Перегляньте всіх спеціалістів краси та фітнесу, представлених в BodyCare.',
+					},
+				},
+				loadChildren: () =>
+					import('./pages/user/specialists/specialists.routes').then(
+						(m) => m.routes,
+					),
+			},
+			{
+				path: 'services',
+				canActivate: [MetaGuard],
+				data: {
+					meta: {
+						title: 'Послуги',
+						description:
+							'Перегляньте всі послуги краси та фітнесу, представлені в BodyCare.',
+					},
+				},
+				loadChildren: () =>
+					import('./pages/user/services/services.routes').then(
+						(m) => m.routes,
+					),
+			},
+			{
 				path: 'explore',
 				canActivate: [MetaGuard],
 				data: {

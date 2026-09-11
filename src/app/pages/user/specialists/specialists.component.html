@@ -1,0 +1,35 @@
+<section class="specialists">
+	<header class="specialists__header">
+		<h2 class="specialists__title">Спеціалісти</h2>
+		<span class="specialists__hint" translate>Перегляньте перевірених спеціалістів краси та фітнесу BodyCare</span>
+	</header>
+
+	<p-card class="specialists__filters">
+		<div class="specialists__field">
+			<label for="specialists-search" translate>Пошук</label>
+			<input
+				id="specialists-search"
+				pInputText
+				type="text"
+				placeholder="Ім’я, місто або спеціалізація"
+				[fluid]="true"
+				[ngModel]="searchTerm()"
+				(ngModelChange)="searchTerm.set($event)"
+			/>
+		</div>
+	</p-card>
+
+	<div class="specialists__results">
+		<span class="specialists__count">Знайдено спеціалістів: {{ results().length }}</span>
+
+		<div class="specialists__grid">
+			@for (item of results(); track item._id) {
+			<div class="specialists__row" (click)="view(item)">
+				<app-specialist-short [entity]="item" />
+			</div>
+			} @empty {
+			<p class="specialists__empty" translate>За заданим запитом спеціалістів не знайдено.</p>
+			}
+		</div>
+	</div>
+</section>

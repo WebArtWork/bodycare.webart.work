@@ -6,9 +6,25 @@
 	>
 		<li class="inline-flex flex-none items-center">
 			<app-nav-icon
+				routerLink="/specialists"
+				[ariaLabel]="translateService.translate('Specialists')()"
+				icon="id-card"
+			/>
+		</li>
+
+		<li class="inline-flex flex-none items-center">
+			<app-nav-icon
 				routerLink="/venues"
 				[ariaLabel]="translateService.translate('Venues')()"
-				icon="briefcase"
+				icon="building"
+			/>
+		</li>
+
+		<li class="inline-flex flex-none items-center">
+			<app-nav-icon
+				routerLink="/services"
+				[ariaLabel]="translateService.translate('Services')()"
+				icon="list"
 			/>
 		</li>
 
