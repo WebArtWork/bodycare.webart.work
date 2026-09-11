@@ -37,6 +37,7 @@
 		"@wawjs/ngx-socket": "22.0.6",
 		"@wawjs/ngx-tinymce": "22.0.6",
 		"@wawjs/ngx-translate": "22.0.6",
+		"@wawjs/ngx-ui": "22.0.6",
 		"ace-builds": "1.44.0",
 		"chart.js": "^4.5.1",
 		"leaflet": "^1.9.4",
