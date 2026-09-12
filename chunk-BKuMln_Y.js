@@ -1,0 +1,1 @@
+var t=[{path:``,loadComponent:()=>import(`./chunk-DoaIQLRm.js`).then(o=>o.ForUsersPageComponent)}];export{t as routes};

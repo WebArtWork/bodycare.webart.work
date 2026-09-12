@@ -1,0 +1,1 @@
+var t=[{path:``,loadComponent:()=>import(`./chunk-CMQV28QS2.js`).then(o=>o.SpecialistComponent)}];export{t as routes};

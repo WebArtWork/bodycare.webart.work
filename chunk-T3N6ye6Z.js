@@ -1,0 +1,1 @@
+var t=[{path:``,loadComponent:()=>import(`./chunk-DWpAl6ms.js`).then(o=>o.FeedbackComponent)}];export{t as routes};

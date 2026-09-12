@@ -1,0 +1,1 @@
+var t=[{path:``,loadComponent:()=>import(`./chunk-p5FxoPyJ.js`).then(o=>o.ForSpecialistsPageComponent)}];export{t as routes};

@@ -1,0 +1,1 @@
+var t=[{path:``,loadComponent:()=>import(`./chunk-C182s1Ng2.js`).then(o=>o.ClientComponent)}];export{t as routes};
